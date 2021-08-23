@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/managers/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +51,7 @@
       <updated>1628001074907</updated>
       <workItem from="1628001075998" duration="2459000" />
       <workItem from="1628499993768" duration="1897000" />
-      <workItem from="1628666806518" duration="18362000" />
+      <workItem from="1628666806518" duration="20209000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -70,7 +67,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629446281217</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Test modification controller user signup pour ne pas avoir besoin de la classe usermanager et n'avoir qu'une fonction">
+      <created>1629448451532</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1629448451532</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -104,6 +108,7 @@
     <MESSAGE value="first commmit &#10;Création de la structure node js" />
     <MESSAGE value="Connection mysql backend" />
     <MESSAGE value="Commit avant test d'ecriture des requetes sql pour les routes users" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit avant test d'ecriture des requetes sql pour les routes users" />
+    <MESSAGE value="Test modification controller user signup pour ne pas avoir besoin de la classe usermanager et n'avoir qu'une fonction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test modification controller user signup pour ne pas avoir besoin de la classe usermanager et n'avoir qu'une fonction" />
   </component>
 </project>
