@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt'); // hasher le mot de passe
 const jwt = require('jsonwebtoken'); //Permet d'attribuer un token à un utilisateur au moment ou il se connecte
 const connection = require('../models/connection');
 const mysql = require('mysql');
-const userManager = require('../managers/user');
 //@todo besoin de hasher l'email ?
 //@todo route delete user ?  update user?
 
@@ -33,24 +32,23 @@ exports.signup = (req, res, next) => {
         if (error) throw error;
         console.log('The solution is: ', results);
     });
-    bcrypt.hash(req.body.password, 10)  //on hash le passeword avec un salt de 10 (nombre de fois ou le mdp sera hasher)
+    let email = req.body.email;
+    let password = req.body.password;
+    let pseudo = req.body.username;
+    bcrypt.hash(password, 10)  //on hash le passeword avec un salt de 10 (nombre de fois ou le mdp sera hasher)
         .then(hash => { //On recupére le mdp hasher qui va etre enregistrer en tant que nouvel utilisateur dans MongoDB
-            const user = new User({ //Création du nouvel utilisateur avec le model mongoose
-                email: hashEmail(req.body.email),  //email encodé sauvegardé //todo verifier si besoin de hasher l'email avec patxi
-                password: hash  // on assigne le hash obtenu comme valeur de la propriété password de l'objet user
+            let sql = 'INSERT INTO users VALUES(NULL, "pseudo", "email", NULL, CURRENT_TIMESTAMP())';
+            // let values = [ email, hash, pseudo ];
+            connection.query(sql, function (err, result) {
+                if (err) {
+                    return res.status(500).json(err.message);
+                };
+                res.status(201).json({ message: "Utilisateur crée !" });
             });
-            user.save() //On enregistre l'user dans la base de données
-                .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-                .catch(error => {
-                    console.log(error);
-                    res.status(400).json({ error })//Erreur possible, que un utilisateur est déja la méme adresse mail
-                });
         })
-        .catch(error => {
-            console.log(error);
-            res.status(500).json({ error })
-        });
+        .catch(e => res.status(500).json(e));
 };
+
 
 // Le Middleware pour la connexion d'un utilisateur vérifie si l'utilisateur existe dans la base MongoDB lors du login
 //si oui il vérifie son mot de passe, s'il est bon il renvoie un TOKEN contenant l'id de l'utilisateur, sinon il renvoie une erreur
