@@ -21,9 +21,7 @@ const commenRoutes = require('./routes/comment');
 const app = express();
 
 
-// Dotenv masque les informations de connexion à la base de données à l'aide de variables d'environnement -> fichier .env
-//@todo appliquer une variable dotenv a la connexion BBD mysql
-dotenv = require('dotenv').config();
+
 
 
 //Middleware debloquant certains système de sécurité CORS, permet à nchaque utilisateur de faire des requetes depuis son navigateurs, permet au front de communiquer avec le back

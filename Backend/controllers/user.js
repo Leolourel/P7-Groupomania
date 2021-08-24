@@ -2,46 +2,52 @@ const bcrypt = require('bcrypt'); // hasher le mot de passe
 const jwt = require('jsonwebtoken'); //Permet d'attribuer un token à un utilisateur au moment ou il se connecte
 const connection = require('../models/connection');
 const mysql = require('mysql');
+const fs =require('fs');
+dotenv = require('dotenv').config();
 //@todo besoin de hasher l'email ?
-//@todo route delete user ?  update user?
+//@todo route update user?
 
-//Hashage de l'adresse mail qui va servir au route signup et login
-function hashEmail(sentence) {
-    if (typeof sentence === "string") {
-        let headMail = sentence.slice(0,1);
-        let bodyMail = sentence.slice(1, sentence.length-4);
-        let bottomMail = sentence.slice(sentence.length-4, sentence.length);
-        let final = [];
-        var masked = bodyMail.split('');
-        var maskedMail = [];
-        for(let i in masked) {
-            masked[i] = '*';
-            maskedMail += masked[i];
-        }
-        final += headMail + maskedMail + bottomMail
-        return final;
-    }
-    console.log(sentence + " is not a mail");
-    return false
-}
+// //Hashage de l'adresse mail qui va servir au route signup et login
+// function hashEmail(sentence) {
+//     if (typeof sentence === "string") {
+//         let headMail = sentence.slice(0,1);
+//         let bodyMail = sentence.slice(1, sentence.length-4);
+//         let bottomMail = sentence.slice(sentence.length-4, sentence.length);
+//         let final = [];
+//         var masked = bodyMail.split('');
+//         var maskedMail = [];
+//         for(let i in masked) {
+//             masked[i] = '*';
+//             maskedMail += masked[i];
+//         }
+//         final += headMail + maskedMail + bottomMail
+//         return final;
+//     }
+//     console.log(sentence + " is not a mail");
+//     return false
+// }
 
 
 //Sauvegarde un nouvel utilisateur et crypte son mot de passe avec bcrypt
 exports.signup = (req, res, next) => {
-    connection.query('SELECT * FROM user', function (error, results, fields) {
-        if (error) throw error;
-        console.log('The solution is: ', results);
-    });
-    let email = req.body.email;
-    let password = req.body.password;
-    let pseudo = req.body.username;
+    // connection.query('SELECT * FROM user', function (error, results, fields) {
+    //     if (error) throw error;
+    //     console.log('The solution is: ', results);
+    // });
+    // let email = req.body.email;
+    // let password = req.body.password;
+    // let pseudo = req.body.username;
+    let email = "leotesttest@gmail.com";
+    let password = "leolourel";
+    let pseudo = "leolourel"
     bcrypt.hash(password, 10)  //on hash le passeword avec un salt de 10 (nombre de fois ou le mdp sera hasher)
         .then(hash => { //On recupére le mdp hasher qui va etre enregistrer en tant que nouvel utilisateur dans MongoDB
-            let sql = 'INSERT INTO users VALUES(NULL, "pseudo", "email", NULL, CURRENT_TIMESTAMP())';
-            // let values = [ email, hash, pseudo ];
-            connection.query(sql, function (err, result) {
+            let sql = "INSERT INTO user (id,pseudo,email,password,avatar,date)" +
+                      " VALUES (NULL, ?, ?, ?, NULL, CURRENT_TIMESTAMP())";
+            let values = [ pseudo,email, hash ];
+            connection.query(sql,values, function (err, result) {
                 if (err) {
-                    return res.status(500).json(err.message);
+                    return res.status(500).json(err.message);//@todo errerur doublon email code erreur
                 };
                 res.status(201).json({ message: "Utilisateur crée !" });
             });
@@ -50,37 +56,87 @@ exports.signup = (req, res, next) => {
 };
 
 
-// Le Middleware pour la connexion d'un utilisateur vérifie si l'utilisateur existe dans la base MongoDB lors du login
-//si oui il vérifie son mot de passe, s'il est bon il renvoie un TOKEN contenant l'id de l'utilisateur, sinon il renvoie une erreur
+
 exports.login = (req, res, next) => {
-    connection.query('SELECT * FROM user', function (error, results, fields) {
-        if (error) throw error;
-        console.log('The solution is: ', results);
+
+    // const email = req.body.email;
+    // const password = req.body.password;
+    const email = "leotesttest@gmail.com";
+    const password = "leolourel";
+
+    const sqlFindUser = "SELECT password FROM user WHERE email = ?";
+
+    connection.query(sqlFindUser, [email], function (err, result) {
+        if (err) {
+            return res.status(500).json(err.message);
+        };
+        if (result.length == 0) {
+            return res.status(401).json({ error: "Utilisateur non trouvé !" });
+        }
+        bcrypt.compare(password, result[0].password)
+            .then(valid => {
+                if (!valid) {
+                    return res.status(401).json({ error: "Mot de passe incorrect !" });
+                }
+                // Si true, on renvoie un statut 200 et un objet JSON avec un userID + un token
+                res.status(200).json({
+                    token: jwt.sign(
+                        { userId: result[0].id },
+                                process.env.TOKEN, //Clé d'encodage du token
+                        { expiresIn: '24h' }, //Le token expire au bout de 24h, une nouvelle connexion sera demandée
+                                console.log("utilisateur connecté ")
+                    )
+                });
+            })
+            .catch(e => res.status(500).json(e));
     });
-    // On doit trouver l'utilisateur dans la BDD qui correspond à l'adresse entrée par l'utilisateur
-    User.findOne({ email: hashEmail(req.body.email) })  //todo verifier si besoin de hasher l'email avec patxi
-        .then(user => {
-            if (!user) {
-                //Si l'adresse mail ne correspont pas on renvoi un erreur 401
-                return res.status(401).json({ error: 'Utilisateur non trouvé !' });
-            }
-            // On utilise bcrypt pour comparer les hashs et savoir si ils ont la même string d'origine
-            bcrypt.compare(req.body.password, user.password)
-                .then(valid => {
-                    if (!valid) { //Si le mdp ne correspond pas on renvoi une erreur 401
-                        return res.status(401).json({ error: 'Mot de passe incorrect !' });
+}
+
+
+// Route delete user
+exports.delete = (req, res, next) => {
+
+    // const password = req.body.password;
+    // const userID = res.locals.userID;
+    let password = 'leolourel';
+    let id = '8';
+    let sqlFindUser = "SELECT password FROM User WHERE id = ?"; // ajouter avatar quand les routes seront prétes
+    connection.query(sqlFindUser, [id], function (err, result) {
+        if (err) {
+            return res.status(500).json(err.message);
+        }
+        if (result.length == 0) {
+            return res.status(401).json({ error: "Utilisateur non trouvé !" });
+        }
+
+        // const filename = result[0].avatar.split("../gif")[1];
+        // if (filename !== "avatarDefault.jpg") {
+        //     fs.unlink(`images/${filename}`, (e) => { // On supprime le fichier image en amont
+        //         if (e) {
+        //             console.log(e);
+        //         }
+        //     })
+        // }
+
+        bcrypt.compare(password,result[0].password)
+            .then(valid => {
+                if (!valid) {
+                    return res.status(401).json({ error: "Mot de passe incorrect !" });
+                }
+                let sqlDeleteUser = "DELETE FROM User WHERE id = ?";
+                connection.query(sqlDeleteUser, [id], function (err, result) {
+                    if (err) {
+                        return res.status(500).json(err.message);
+                    };
+                    if (result.affectedRows == 0) {
+                        return res.status(400).json({ message: "Suppression échouée" });
                     }
-                    // Si true, on renvoie un statut 200 et un objet JSON avec un userID + un token
-                    res.status(200).json({
-                        userId: user._id,
-                        token: jwt.sign(
-                            { userId: user._id },
-                            'RANDOM_TOKEN_SECRET', //Clé d'encodage du token
-                            { expiresIn: '24h' } //Le token expire au bout de 24h, une nouvelle connexion sera demandée
-                        ) // On encode le userID pour la création de nouveaux objets, et cela permet d'appliquer le bon userID
-                    });
-                })
-                .catch(error => res.status(500).json({ error }));
-        })
-        .catch(error => res.status(500).json({ error }));
-};
+                    res.status(200).json({ message: "Utilisateur supprimé !" });
+                });
+            })
+            .catch(e => res.status(500).json(e));
+    });
+}
+
+
+

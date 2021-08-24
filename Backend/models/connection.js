@@ -1,11 +1,12 @@
 const mysql = require('mysql');
-
+// Dotenv masque les informations de connexion à la base de données à l'aide de variables d'environnement -> fichier .env
+dotenv = require('dotenv').config();
 
 const connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'leolourel',
-    password : '',
-    database: 'groupomania'
+    host     : process.env.DB_HOST,
+    user     : process.env.DB_USER,
+    password : process.env.DB_PASSWORD,
+    database:  process.env.DB_DATABASE
 });
 
 connection.connect(function(err) {
