@@ -1,4 +1,4 @@
-// @todo definir les middleware
+// @todo route update
 
 
 // exports.createComment = (req, res, next) => {
@@ -6,11 +6,6 @@
 // };
 //
 
-//
-// exports.findOneComment = (req, res, next) => {
-//
-// };
-//
 // exports.findAllComments = (req, res, next) => {
 
 // };

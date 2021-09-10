@@ -1,8 +1,10 @@
-//todo lister les routes possibles
-//todo route commentaire
+
 const connection = require('../models/connection');
 const mysql = require('mysql');
 const fs =require('fs');
+
+//@todo getall gif et getOne gif route, type de jointure pour mes select : SELECT *  FROM gif g INNER JOIN user u ON u.id = g.user_id
+
 
 //acceder à toutes les sauces
 // exports.getAllGif = (req, res, next) => {
@@ -14,7 +16,46 @@ const fs =require('fs');
 //         });
 // };
 
-//créer une sauce
+//acceder à tous les gifs
+exports.getAllGif = (req, res, next) => {
+    // const userID = res.locals.userID;
+    const userID = "9";
+    let sqlGetPosts;
+    sqlGetPosts = `SELECT *  FROM gif`;
+    connection.query(sqlGetPosts, [userID], function (err, result) {
+        if (err) {
+            return res.status(500).json(err.message);
+        };
+        if (result.length == 0) {
+            return res.status(400).json({ message: "Aucun post à afficher !" });
+        }
+        res.status(200).json(result);
+    });
+}
+
+
+// acceder à un seul gif
+exports.getOneGif = (req, res, next) => {
+    // const postID = req.params.id;
+    const postID = "4"
+
+    let sqlGetPost;
+
+    sqlGetPost = `SELECT *  FROM gif where gif.id = ?`;
+    connection.query(sqlGetPost,[postID], function (err, result) {
+        if (err) {
+            return res.status(500).json(err.message);
+        };
+        if (result.length == 0) {
+            return res.status(400).json({ message: "Aucun post à afficher !" });
+        }
+        res.status(200).json(result);
+    });
+}
+
+
+
+//créer un gif
 exports.createOneGif = (req, res, next) => {
     // const userID = res.locals.userID;
     // const legend = req.body.legend;
@@ -36,68 +77,45 @@ exports.createOneGif = (req, res, next) => {
     });
 };
 
-//acceder à un gif //todo besoin d'acceder à un seul gif ?
-// exports.getOneSauce = (req, res, next) => {
-//     Gif.findOne({_id: req.params.id})
-//         .then((gif) => { res.status(200).json(gif);})
-//         .catch((error) => {res.status(404).json({error});
-//         });
-// };
 
-//modifier une sauce
-// exports.modifyOneGif = (req, res, _) => {
-//     //On récupére le gif à modifier
-//     const gifObject = req.file ? {
-//         ...JSON.parse(req.body.gif),
-//         gifUrl: `${req.protocol}://${req.get('host')}/gif/${req.file.filename}`
-//     } : { ...req.body };
-//     //Mise à jour des modification du gif
-//     Gif.updateOne({ _id: req.params.id }, { ...gifObject, _id: req.params.id })
-//         //Envoi d'une réponse au front avec un statut 200 et d'une erreur en cas de problème
-//         .then(() => res.status(200).json({ message: 'gif modifiée.' }))
-//         .catch(error => res.status(400).json({error}));
-// };
-//
+
 // //supprimer un gif
-// exports.deleteOneGif = (req, res, next) => {
-//     //On récupere le gif
-//     Gif.findOne({ _id: req.params.id })
-//         .then(gif => {
-//             //On supprime le gif et l'image de la base de données
-//             const filename = gif.gifUrl.split('/gif/')[1];
-//             fs.unlink(`gif/${filename}`, () => {
-//                 Gif.deleteOne({ _id: req.params.id })
-//                     //Envoi d'une réponse au front avec un statut 200 et d'une erreur en cas de problème
-//                     .then(() => res.status(200).json({ message: 'Gif supprimé !'}))
-//                     .catch(error => res.status(400).json({ error }));
-//             });
-//         })
-//         .catch(error => res.status(500).json({ error }));
-// };
-//
+exports.deleteOneGif = (req, res, next) => {
+    // const gifId = req.params.id;
+    // const userId = res.locals.userID;
+    let gifId = "5";
+    let userId = "9";
+    let gifUrl = "hello.gif"; //@todo supp après test, doublon de code verifier
+
+    let sqlSelectPost = "SELECT url FROM gif WHERE id = ?";
+    connection.query(sqlSelectPost, [gifId], function (err, result) {
+        if (result > 0) {
+            // const filename = result[0].gifUrl.split("/gif/")[1];
+            // fs.unlink(`gif/${filename}`
+                fs.unlink(gifUrl, () => { // On supprime le fichier image en amont
+                let sqlDeletePost = "DELETE FROM Post WHERE userID = ? AND postID = ?";
+                connection.query(sqlDeletePost, [userId, gifId], function (err, result) {
+                    if (err) {
+                        return res.status(500).json(err.message);
+                    };
+                    res.status(200).json({ message: "Post supprimé !" });
+                });
+            })
+        } else {
+            let sqlDeletePost = "DELETE FROM gif WHERE user_id = ? AND id = ?";
+            connection.query(sqlDeletePost, [userId, gifId], function (err, result) {
+                if (err) {
+                    return res.status(500).json(err.message);
+                };
+                res.status(200).json({ message: "Post supprimé !" });
+            });
+        }
+        if (err) {
+            return res.status(500).json(err.message);
+        };
+
+
+    });
+}
 //
 // exports.rateOneGif = (req, res, next) => {
-//     if (req.body.like === 1) { // si l'utilisateur aime le gif //
-//         Gif.updateOne({ _id: req.params.id }, { $inc: { likes: req.body.like++ }, $push: { usersLiked: req.body.userId } }) // on ajoute 1 like et on le push l'array usersLiked //
-//             .then((gif) => res.status(200).json({ message: 'Un like de plus !' }))
-//             .catch(error => res.status(400).json({ error }));
-//     } else if (req.body.like === -1) { // sinon si il aime pas la sauce //
-//         Gif.updateOne({ _id: req.params.id }, { $inc: { dislikes: (req.body.like++) * -1 }, $push: { usersDisliked: req.body.userId } }) // on ajoute 1 dislike et on le push l'array usersDisliked //
-//             .then((gif) => res.status(200).json({ message: 'Un dislike de plus !' }))
-//             .catch(error => res.status(400).json({ error }));
-//     } else { // si l'utilisateur enleve son vote
-//         Gif.findOne({ _id: req.params.id })
-//             .then(gif => {
-//                 if (gif.usersLiked.includes(req.body.userId)) { // si l'array userLiked contient le id de like //
-//                     Gif.updateOne({ _id: req.params.id }, { $pull: { usersLiked: req.body.userId }, $inc: { likes: -1 } }) // $pull : ça vide l'array userLiked et ça enleve un like sinon le meme utilisateur pourrai ajouter plusieurs like//
-//                         .then((gif) => { res.status(200).json({ message: 'Un like de moins !' }) })
-//                         .catch(error => res.status(400).json({ error }))
-//                 } else if (gif.usersDisliked.includes(req.body.userId)) { //// si l'array userDisliked contient le id de like //
-//                     Gif.updateOne({ _id: req.params.id }, { $pull: { usersDisliked: req.body.userId }, $inc: { dislikes: -1 } })// $pull : ça vide l'array userDisliked et ça enleve un like sinon le meme utilisateur pourrai ajouter plusieurs like//
-//                         .then((gif) => { res.status(200).json({ message: 'Un dislike de moins !' }) })
-//                         .catch(error => res.status(400).json({ error }))
-//                 }
-//             })
-//             .catch(error => res.status(400).json({ error }));
-//     }
-// };

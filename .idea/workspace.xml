@@ -3,14 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/comment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/controllers/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/gif.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/middleware/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/middleware/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/models/connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/models/connection.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/routes/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/gif.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +40,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled9" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../OrinocoP5" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -59,7 +55,8 @@
       <updated>1628001074907</updated>
       <workItem from="1628001075998" duration="2459000" />
       <workItem from="1628499993768" duration="1897000" />
-      <workItem from="1628666806518" duration="36351000" />
+      <workItem from="1628666806518" duration="39453000" />
+      <workItem from="1630334926422" duration="7855000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -96,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629725181608</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="route login delete signup user ok ! &#10;route create onegif ok !">
+      <created>1629813369482</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1629813369482</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +137,7 @@
     <MESSAGE value="Test modification controller user signup pour ne pas avoir besoin de la classe usermanager et n'avoir qu'une fonction" />
     <MESSAGE value="Commit avant test insert into sql route signup" />
     <MESSAGE value="commit route signup sql done, debut de la route login" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit route signup sql done, debut de la route login" />
+    <MESSAGE value="route login delete signup user ok ! &#10;route create onegif ok !" />
+    <option name="LAST_COMMIT_MESSAGE" value="route login delete signup user ok ! &#10;route create onegif ok !" />
   </component>
 </project>

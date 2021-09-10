@@ -4,8 +4,8 @@ const connection = require('../models/connection');
 const mysql = require('mysql');
 const fs =require('fs');
 dotenv = require('dotenv').config();
-//@todo besoin de hasher l'email ?
-//@todo route update user?
+
+//@todo route update user
 
 // //Hashage de l'adresse mail qui va servir au route signup et login
 // function hashEmail(sentence) {
@@ -138,5 +138,6 @@ exports.delete = (req, res, next) => {
     });
 }
 
+// @todo route logout ? on supp le token? voir jsonwebtoken si solution ou supp avec session storage cote front ?
 
-
+// @todo compte admin ? isAdmin phpmyadmin, supp compte utilisateur a preparer coter back
