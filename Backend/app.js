@@ -48,7 +48,7 @@ app.use(bodyParser.json());
 //Permet de charger les fichiers qui sont dans le repertoire images
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-//Routes sauces
+//Routes gif
 app.use('/api/gif', gifRoutes);
 
 //Routes utilisateurs

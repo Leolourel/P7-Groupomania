@@ -36,8 +36,8 @@ exports.getAllGif = (req, res, next) => {
 
 // acceder à un seul gif
 exports.getOneGif = (req, res, next) => {
-    // const postID = req.params.id;
-    const postID = "4"
+    const postID = req.params.id;
+    // const postID = "4"
 
     let sqlGetPost;
 
@@ -79,7 +79,7 @@ exports.createOneGif = (req, res, next) => {
 
 
 
-// //supprimer un gif
+// supprimer un gif
 exports.deleteOneGif = (req, res, next) => {
     // const gifId = req.params.id;
     // const userId = res.locals.userID;

@@ -75,7 +75,7 @@ exports.login = (req, res, next) => {
         }
         bcrypt.compare(password, result[0].password)
             .then(valid => {
-                if (!valid) {
+                if (!valid && req.user && req.user.isAdmin ) {   //@todo verifier si le code isAdmin fonctionne?
                     return res.status(401).json({ error: "Mot de passe incorrect !" });
                 }
                 // Si true, on renvoie un statut 200 et un objet JSON avec un userID + un token
