@@ -34,12 +34,12 @@ exports.signup = (req, res, next) => {
     //     if (error) throw error;
     //     console.log('The solution is: ', results);
     // });
-    // let email = req.body.email;
-    // let password = req.body.password;
-    // let pseudo = req.body.username;
-    let email = "leotesttest@gmail.com";
-    let password = "leolourel";
-    let pseudo = "leolourel"
+    let email = req.body.email;
+    let password = req.body.password;
+    let pseudo = req.body.pseudo;
+    // let email = "leotesttest@gmail.com";
+    // let password = "leolourel";
+    // let pseudo = "leolourel"
     bcrypt.hash(password, 10)  //on hash le passeword avec un salt de 10 (nombre de fois ou le mdp sera hasher)
         .then(hash => { //On recupére le mdp hasher qui va etre enregistrer en tant que nouvel utilisateur dans MongoDB
             let sql = "INSERT INTO user (id,pseudo,email,password,avatar,date)" +
