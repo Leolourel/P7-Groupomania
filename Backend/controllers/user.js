@@ -59,10 +59,10 @@ exports.signup = (req, res, next) => {
 
 exports.login = (req, res, next) => {
 
-    // const email = req.body.email;
-    // const password = req.body.password;
-    const email = "leotesttest@gmail.com";
-    const password = "leolourel";
+    const email = req.body.email;
+    const password = req.body.password;
+    // const email = "leotesttest@gmail.com";
+    // const password = "leolourel";
 
     const sqlFindUser = "SELECT password FROM user WHERE email = ?";
 
@@ -75,7 +75,7 @@ exports.login = (req, res, next) => {
         }
         bcrypt.compare(password, result[0].password)
             .then(valid => {
-                if (!valid && req.user && req.user.isAdmin ) {   //@todo verifier si le code isAdmin fonctionne?
+                if (!valid && req.user && req.user ) {   //@todo verifier si le code isAdmin fonctionne?
                     return res.status(401).json({ error: "Mot de passe incorrect !" });
                 }
                 // Si true, on renvoie un statut 200 et un objet JSON avec un userID + un token
@@ -85,6 +85,7 @@ exports.login = (req, res, next) => {
                                 process.env.TOKEN, //Clé d'encodage du token
                         { expiresIn: '24h' }, //Le token expire au bout de 24h, une nouvelle connexion sera demandée
                                 console.log("utilisateur connecté ")
+
                     )
                 });
             })

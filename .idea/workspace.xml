@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" afterDir="false" />
     </list>
@@ -26,7 +27,7 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/groupomania-app" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1wDlWrwKGPthzmqnSPrj2mvREhe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -61,7 +62,7 @@
       <workItem from="1631866036254" duration="1267000" />
       <workItem from="1632231951223" duration="9000" />
       <workItem from="1632237064197" duration="472000" />
-      <workItem from="1632237872679" duration="20640000" />
+      <workItem from="1632237872679" duration="26220000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -119,7 +120,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632488403071</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="methode createAccount fonctionnel sur front">
+      <created>1632493562197</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1632493562197</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +167,7 @@
     <MESSAGE value="route login delete signup user ok ! &#10;route create onegif ok !" />
     <MESSAGE value="Route gif terminés" />
     <MESSAGE value="First commit front connect, avant création du switch entre login et signup" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit front connect, avant création du switch entre login et signup" />
+    <MESSAGE value="methode createAccount fonctionnel sur front" />
+    <option name="LAST_COMMIT_MESSAGE" value="methode createAccount fonctionnel sur front" />
   </component>
 </project>
