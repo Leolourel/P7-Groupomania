@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,7 +62,7 @@
       <workItem from="1631866036254" duration="1267000" />
       <workItem from="1632231951223" duration="9000" />
       <workItem from="1632237064197" duration="472000" />
-      <workItem from="1632237872679" duration="26220000" />
+      <workItem from="1632237872679" duration="29209000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -127,7 +127,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632493562197</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Appel api login et signup ok sur le front, commit avant satuts connection">
+      <created>1632562898883</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1632562898883</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +175,7 @@
     <MESSAGE value="Route gif terminés" />
     <MESSAGE value="First commit front connect, avant création du switch entre login et signup" />
     <MESSAGE value="methode createAccount fonctionnel sur front" />
-    <option name="LAST_COMMIT_MESSAGE" value="methode createAccount fonctionnel sur front" />
+    <MESSAGE value="Appel api login et signup ok sur le front, commit avant satuts connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Appel api login et signup ok sur le front, commit avant satuts connection" />
   </component>
 </project>
