@@ -27,6 +27,43 @@ dotenv = require('dotenv').config();
 //     return false
 // }
 
+exports.getOneUser = (req, res, next) => { //jwt recup id a partir du token, ligne 11         const token = req.headers.authorization.split(' ')[1];
+
+    // const userToken = req.headers.authorization.split(' ')[1];
+    const userToken = 42;
+    // console.log(req.headers.authorization);
+    let sqlGetUser;
+
+    sqlGetUser = "SELECT *  FROM user where user.id = ?";
+    connection.query(sqlGetUser,[userToken], function (err, result) {
+        if (err) {
+            return res.status(500).json(err.message);
+        };
+        if (result.length == 0) {
+            return res.status(400).json({ message: "User non trouvé !" });
+        }
+        res.status(200).json(result[0]);
+        // console.log(res.status(200).json(result[0]));
+    });
+}
+
+exports.getAllUsers = (req, res, next) => {
+    const userID = req.body.userId;
+
+    let sqlGetUsers;
+
+    sqlGetUsers = `SELECT *  FROM user`;
+    connection.query(sqlGetUsers, [userID], function (err, result) {
+        if (err) {
+            return res.status(500).json(err.message);
+        };
+        if (result.length == 0) {
+            return res.status(400).json({ message: "Aucun user trouvé!" });
+        }
+        res.status(200).json(result);
+    });
+}
+
 
 //Sauvegarde un nouvel utilisateur et crypte son mot de passe avec bcrypt
 exports.signup = (req, res, next) => {
@@ -37,9 +74,6 @@ exports.signup = (req, res, next) => {
     let email = req.body.email;
     let password = req.body.password;
     let pseudo = req.body.pseudo;
-    // let email = "leotesttest@gmail.com";
-    // let password = "leolourel";
-    // let pseudo = "leolourel"
     bcrypt.hash(password, 10)  //on hash le passeword avec un salt de 10 (nombre de fois ou le mdp sera hasher)
         .then(hash => { //On recupére le mdp hasher qui va etre enregistrer en tant que nouvel utilisateur dans MongoDB
             let sql = "INSERT INTO user (id,pseudo,email,password,avatar,date)" +
@@ -63,8 +97,9 @@ exports.login = (req, res, next) => {
     const password = req.body.password;
     // const email = "leotesttest@gmail.com";
     // const password = "leolourel";
+    // const userid = 17;
 
-    const sqlFindUser = "SELECT password FROM user WHERE email = ?";
+    const sqlFindUser = "SELECT id, password FROM user WHERE email = ?";
 
     connection.query(sqlFindUser, [email], function (err, result) {
         if (err) {
@@ -80,6 +115,7 @@ exports.login = (req, res, next) => {
                 }
                 // Si true, on renvoie un statut 200 et un objet JSON avec un userID + un token
                 res.status(200).json({
+                    userId: result[0].id,
                     token: jwt.sign(
                         { userId: result[0].id },
                                 process.env.TOKEN, //Clé d'encodage du token

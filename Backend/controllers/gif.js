@@ -19,7 +19,7 @@ const fs =require('fs');
 //acceder à tous les gifs
 exports.getAllGif = (req, res, next) => {
     // const userID = res.locals.userID;
-    const userID = "9";
+    const userID = "42";
     let sqlGetPosts;
     sqlGetPosts = `SELECT *  FROM gif`;
     connection.query(sqlGetPosts, [userID], function (err, result) {
