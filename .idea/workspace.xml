@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/controllers/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/gif.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Frontend/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/navbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/post.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/post.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Createpost.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Createpost.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Profil.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Profile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +26,7 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/groupomania-app" />
   </component>
   <component name="ProjectId" id="1wDlWrwKGPthzmqnSPrj2mvREhe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -72,7 +62,7 @@
       <workItem from="1632231951223" duration="9000" />
       <workItem from="1632237064197" duration="472000" />
       <workItem from="1632237872679" duration="62277000" />
-      <workItem from="1632838004244" duration="2691000" />
+      <workItem from="1632838004244" duration="6718000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -158,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632733854697</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="View profile en attente de correction de la route infos, login signup et logout fonctionnel, debut de la fonction getallgif sur le /feed">
+      <created>1632841227081</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1632841227081</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +199,7 @@
     <MESSAGE value="Appel api login et signup ok sur le front, commit avant satuts connection" />
     <MESSAGE value="connection renvoi vers page feed" />
     <MESSAGE value="page feed, profil, et create post créer &#10;component navbar créeer" />
-    <option name="LAST_COMMIT_MESSAGE" value="page feed, profil, et create post créer &#10;component navbar créeer" />
+    <MESSAGE value="View profile en attente de correction de la route infos, login signup et logout fonctionnel, debut de la fonction getallgif sur le /feed" />
+    <option name="LAST_COMMIT_MESSAGE" value="View profile en attente de correction de la route infos, login signup et logout fonctionnel, debut de la fonction getallgif sur le /feed" />
   </component>
 </project>
