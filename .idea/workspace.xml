@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/post.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/post.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/post.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Post.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +64,7 @@
       <workItem from="1632231951223" duration="9000" />
       <workItem from="1632237064197" duration="472000" />
       <workItem from="1632237872679" duration="62277000" />
-      <workItem from="1632838004244" duration="6718000" />
+      <workItem from="1632838004244" duration="12129000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -155,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632841227081</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="debut store gif">
+      <created>1632925690445</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1632925690445</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,6 +209,7 @@
     <MESSAGE value="connection renvoi vers page feed" />
     <MESSAGE value="page feed, profil, et create post créer &#10;component navbar créeer" />
     <MESSAGE value="View profile en attente de correction de la route infos, login signup et logout fonctionnel, debut de la fonction getallgif sur le /feed" />
-    <option name="LAST_COMMIT_MESSAGE" value="View profile en attente de correction de la route infos, login signup et logout fonctionnel, debut de la fonction getallgif sur le /feed" />
+    <MESSAGE value="debut store gif" />
+    <option name="LAST_COMMIT_MESSAGE" value="debut store gif" />
   </component>
 </project>
