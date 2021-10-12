@@ -29,13 +29,17 @@ dotenv = require('dotenv').config();
 
 exports.getOneUser = (req, res, next) => { //jwt recup id a partir du token, ligne 11         const token = req.headers.authorization.split(' ')[1];
 
-    // const userToken = req.headers.authorization.split(' ')[1];
-    const userToken = 42;
-    // console.log(req.headers.authorization);
+    const userToken = req.headers.authorization;
+
+    const userInfo = jwt.verify(userToken, process.env.TOKEN);
+
+    const userId = userInfo.userId
+    // const userToken = req.body.userId;
+    console.log(userInfo, userId);
     let sqlGetUser;
 
     sqlGetUser = "SELECT *  FROM user where user.id = ?";
-    connection.query(sqlGetUser,[userToken], function (err, result) {
+    connection.query(sqlGetUser,[userId], function (err, result) {
         if (err) {
             return res.status(500).json(err.message);
         };
@@ -117,10 +121,12 @@ exports.login = (req, res, next) => {
                 res.status(200).json({
                     userId: result[0].id,
                     token: jwt.sign(
-                        { userId: result[0].id },
+                        {
+                            userId: result[0].id,
+                        },
                                 process.env.TOKEN, //Clé d'encodage du token
                         { expiresIn: '24h' }, //Le token expire au bout de 24h, une nouvelle connexion sera demandée
-                                console.log("utilisateur connecté ")
+                                console.log("utilisateur connecté ", result[0])
 
                     )
                 });

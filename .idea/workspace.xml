@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/navbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +43,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled9" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -73,7 +66,7 @@
       <workItem from="1632237064197" duration="472000" />
       <workItem from="1632237872679" duration="62277000" />
       <workItem from="1632838004244" duration="16910000" />
-      <workItem from="1633502670546" duration="18710000" />
+      <workItem from="1633502670546" duration="22363000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -187,7 +180,21 @@
       <option name="project" value="LOCAL" />
       <updated>1633504953466</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="nettoyage de git, ajout du front">
+      <created>1634021510111</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1634021510111</updated>
+    </task>
+    <task id="LOCAL-00018" summary="commit avant session patxi">
+      <created>1634021529146</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1634021529146</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,6 +236,7 @@
     <MESSAGE value="debut store gif" />
     <MESSAGE value="Store gif fonctionnel, commit avant de faire fonctionner le store avec axios" />
     <MESSAGE value="nettoyage de git, ajout du front" />
-    <option name="LAST_COMMIT_MESSAGE" value="nettoyage de git, ajout du front" />
+    <MESSAGE value="commit avant session patxi" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit avant session patxi" />
   </component>
 </project>
