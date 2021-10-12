@@ -31,16 +31,27 @@ const store = createStore({
         status:'',
         user: user,
         userInfos: {
+            id: "",
             pseudo: "",
             email: "",
             avatar: "",
         },
-        gifs: []
+        // gifs: [{
+        //     id: 1,
+        //     title: 'test',
+        //     url:'test,'
+        // }]
     },
     // getters: {
-    //     getGif(state) {
-    //         return state.gif;
+    //     getGifs(state) {
+    //         return state.gifs;
     //     }
+    // },
+    // methods: {
+    //   updateGif(){
+    //       instance.get('/api/gif/')
+    //           .then( reponse => this.gifs = reponse.data)
+    //   }
     // },
     mutations: {
         setStatus: function (state, status) {
@@ -105,12 +116,12 @@ const store = createStore({
         // getAllGif: ({commit}) => {
         //     instance.get('/api/gif/')
         //         .then(function (response ) {
-        //             commit('allGifInfos', response.data);
+        //             commit('gifs', response.data);
         //             console.log(response.data)
         //         })
         //         .catch(function () {
         //         })
-        // }
+        // },
     }
 });
 

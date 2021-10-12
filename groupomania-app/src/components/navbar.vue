@@ -1,10 +1,12 @@
 <template>
 
-<nav id="nav">
-  <div><img id="logo" src="../assets/icon-left-font.png" @click="goToFeed()"></div>
-  <button id="button--profil" @click="goToProfil()">Profil</button>
-  <button id="button--gif" @click="goToCreatePost()">Nouvelle publication</button>
-  <button @click="logout()" id="button--logout">Déconnexion</button>
+<nav class="container">
+  <div class="row justify-content-evenly">
+    <div class="col-2"><img id="logo" src="../assets/icon-left-font.png" @click="goToFeed()"></div>
+    <button type="button" class="btn btn-outline-secondary btn-sm col-2" @click="goToProfil()">Profil</button>
+    <button type="button" class="btn btn-outline-secondary col-2" @click="goToCreatePost()">Nouvelle publication</button>
+    <button @click="logout()" class="btn btn-outline-secondary col-2">Déconnexion</button>
+  </div>
 </nav>
 </template>
 

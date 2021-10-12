@@ -1,11 +1,14 @@
 <template>
-<div id="container">
-  <div id="pseudo"><p>{{user.pseudo}}</p></div>
-  <div id="mail"><p>{{ user.email }}</p></div>
-  <div id="avatar"><img :src="user.avatar">Avatar</div>
-  <button id="button--avatar">Modifier mes informations</button>
-  <button id="button--delete">Supprimer mon compte</button>
-
+<div class="container d-flex flex-column align-items-center border border-1 rounded mt-5">
+      <div class="row mt-5"><p class="col">Pseudo : {{user.pseudo}}</p></div>
+      <div class="row mt-5"><p class="col">Email :  {{ user.email }}</p></div>
+      <div class="row w-25 mt-5"><img :src="user.avatar" class="col"></div>
+      <div class="row mt-5">
+       <button type="button" class="btn btn-outline-secondary btn-sm col">Modifier mes informations</button>
+      </div>
+      <div class="row mt-5 mb-5">
+        <button type="button" class="btn btn-outline-secondary btn-sm col">Supprimer mon compte</button>
+      </div>
 </div>
 </template>
 
@@ -22,26 +25,5 @@ name: "profilecard",
 </script>
 
 <style scoped>
-#container{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 500px;
-  height: 800px;
-}
-#pseudo{
-  width: 100px;
-}
-#mail{
-  width: 100px;
-}
-#avatar{
-  width: 300px;
-  height: 300px;
-}
-#button--avatar{
-  width: 150px;
-}
 
 </style>
