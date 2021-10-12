@@ -2,17 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/post.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/navbar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Post.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="directory" />
+    </option>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -28,7 +36,7 @@
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/groupomania-app" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1wDlWrwKGPthzmqnSPrj2mvREhe" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -44,7 +52,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -64,7 +72,8 @@
       <workItem from="1632231951223" duration="9000" />
       <workItem from="1632237064197" duration="472000" />
       <workItem from="1632237872679" duration="62277000" />
-      <workItem from="1632838004244" duration="12129000" />
+      <workItem from="1632838004244" duration="16910000" />
+      <workItem from="1633502670546" duration="18710000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -164,7 +173,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632925690445</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Store gif fonctionnel, commit avant de faire fonctionner le store avec axios">
+      <created>1633011506806</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1633011506806</updated>
+    </task>
+    <task id="LOCAL-00016" summary="nettoyage de git, ajout du front">
+      <created>1633504953466</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1633504953466</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,19 +198,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="Backend" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -195,6 +206,12 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/Frontend/groupomania-app" />
+      <path value="$PROJECT_DIR$/groupomania-app" />
+    </ignored-roots>
     <MESSAGE value="first commmit &#10;Création de la structure node js" />
     <MESSAGE value="Connection mysql backend" />
     <MESSAGE value="Commit avant test d'ecriture des requetes sql pour les routes users" />
@@ -210,6 +227,8 @@
     <MESSAGE value="page feed, profil, et create post créer &#10;component navbar créeer" />
     <MESSAGE value="View profile en attente de correction de la route infos, login signup et logout fonctionnel, debut de la fonction getallgif sur le /feed" />
     <MESSAGE value="debut store gif" />
-    <option name="LAST_COMMIT_MESSAGE" value="debut store gif" />
+    <MESSAGE value="Store gif fonctionnel, commit avant de faire fonctionner le store avec axios" />
+    <MESSAGE value="nettoyage de git, ajout du front" />
+    <option name="LAST_COMMIT_MESSAGE" value="nettoyage de git, ajout du front" />
   </component>
 </project>
