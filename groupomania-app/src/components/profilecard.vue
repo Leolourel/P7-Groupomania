@@ -7,20 +7,44 @@
        <button type="button" class="btn btn-outline-secondary btn-sm col">Modifier mes informations</button>
       </div>
       <div class="row mt-5 mb-5">
-        <button type="button" class="btn btn-outline-secondary btn-sm col">Supprimer mon compte</button>
+        <button class="btn btn-outline-secondary btn-sm col" type="button" v-on:click="deleteAccount()">Supprimer mon compte</button>
       </div>
 </div>
 </template>
 
 <script>
+import axios from 'axios';
 import { mapState } from 'vuex';
 export default {
-name: "profilecard",
+  name: "profilecard",
   computed: {
-  ...mapState({
-    user: 'userInfos'
-  })
-  }
+    ...mapState({
+      user: 'userInfos'
+    })
+  },
+  methods: {
+    deleteAccount() {
+      axios.delete('http://localhost:3000/api/auth/delete', {
+        data : {
+          id : this.$store.state.userInfos.id
+        },
+        headers: {
+          'Authorization': this.$store.state.user.token
+        }
+      })
+          .then(() => {
+            localStorage.clear();
+            this.$router.push('/');
+          })
+          .catch((err) => {
+            if (err.response.status == 401) {
+              this.$router.push("/")
+            } else {
+              console.log('Error: ', err)
+            }
+          })
+    },
+  },
 }
 </script>
 

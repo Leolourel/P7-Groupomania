@@ -18,11 +18,12 @@ const fs =require('fs');
 
 //acceder à tous les gifs
 exports.getAllGif = (req, res, next) => {
-    // const userID = res.locals.userID;
-    const userID = "42";
+    const userID = res.locals.userID;
+    // const userID = "42";
+    const sqlFeed = "SELECT* FROM gif g LEFT JOIN user u ON g.user_id = u.id";
     let sqlGetPosts;
     sqlGetPosts = `SELECT *  FROM gif`;
-    connection.query(sqlGetPosts, [userID], function (err, result) {
+    connection.query(sqlFeed, function (err, result) {
         if (err) {
             return res.status(500).json(err.message);
         };
@@ -83,9 +84,9 @@ exports.createOneGif = (req, res, next) => {
 exports.deleteOneGif = (req, res, next) => {
     // const gifId = req.params.id;
     // const userId = res.locals.userID;
-    let gifId = "5";
-    let userId = "9";
-    let gifUrl = "hello.gif"; //@todo supp après test, doublon de code verifier
+    let gifId = "6";
+    let userId = "10";
+    // let gifUrl = "test.gif"; //@todo supp après test, doublon de code verifier
 
     let sqlSelectPost = "SELECT url FROM gif WHERE id = ?";
     connection.query(sqlSelectPost, [gifId], function (err, result) {

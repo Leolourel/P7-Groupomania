@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/gif.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +70,9 @@
       <workItem from="1632237064197" duration="472000" />
       <workItem from="1632237872679" duration="62277000" />
       <workItem from="1632838004244" duration="16910000" />
-      <workItem from="1633502670546" duration="22363000" />
+      <workItem from="1633502670546" duration="23768000" />
+      <workItem from="1634201258902" duration="16000" />
+      <workItem from="1634201296287" duration="10888000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -194,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634021529146</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="UserInfos recuperer dans la page profil card">
+      <created>1634049878197</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1634049878197</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,6 +250,7 @@
     <MESSAGE value="Store gif fonctionnel, commit avant de faire fonctionner le store avec axios" />
     <MESSAGE value="nettoyage de git, ajout du front" />
     <MESSAGE value="commit avant session patxi" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit avant session patxi" />
+    <MESSAGE value="UserInfos recuperer dans la page profil card" />
+    <option name="LAST_COMMIT_MESSAGE" value="UserInfos recuperer dans la page profil card" />
   </component>
 </project>

@@ -141,8 +141,8 @@ exports.delete = (req, res, next) => {
 
     // const password = req.body.password;
     // const userID = res.locals.userID;
-    let password = 'leolourel';
-    let id = '8';
+    let password = '$2b$10$4xflK767DkztLaQ3bGLb/OTyppSCJJmM/VFcz2/cWoeH0/eJiXaRS';
+    let id = 18;
     let sqlFindUser = "SELECT password FROM User WHERE id = ?"; // ajouter avatar quand les routes seront prétes
     connection.query(sqlFindUser, [id], function (err, result) {
         if (err) {
