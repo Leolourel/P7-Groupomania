@@ -33,6 +33,9 @@
            <input type="textarea"  name="comment" value="Ecriver ici votre commentaire...">
          </formulaire>
        </div>
+       <div class="row">
+         <p class="col">{{gif.content}}</p>
+       </div>
      </div>
 </div>
 </template>
@@ -57,6 +60,7 @@ export default {
             console.log(this.gifs)
           })
   },
+
   // computed: {
   //   gifs(){
   //     return this.$store.getters.getGifs;

@@ -14,6 +14,5 @@ router.get('/',  gifsCtrl.getAllGif);
 router.post('/', multer, gifsCtrl.createOneGif);
 router.get('/:id', gifsCtrl.getOneGif);
 router.delete('/:id', gifsCtrl.deleteOneGif);
-// router.post('/:id/like', auth, gifsCtrl.rateOneGif);
 
 module.exports = router;

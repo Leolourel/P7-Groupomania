@@ -1,3 +1,4 @@
+
 const bcrypt = require('bcrypt'); // hasher le mot de passe
 const jwt = require('jsonwebtoken'); //Permet d'attribuer un token à un utilisateur au moment ou il se connecte
 const connection = require('../models/connection');
@@ -139,47 +140,62 @@ exports.login = (req, res, next) => {
 // Route delete user
 exports.delete = (req, res, next) => {
 
+
+    const userToken = req.headers.authorization;
+
+    const userInfo = jwt.verify(userToken, process.env.TOKEN);
+
+    const userId = userInfo.userId;
+
+    if (userId === req.params.id) {
+        const sqlDeleteUser = "DELETE FROM users WHERE id = ? ";
+
+        // Requête
+        connection.query(sqlDeleteUser, [userId], (error, res) => {
+            if (!error) {
+                res.status(200).json({message: "Utilisateur supprimé"});
+            } else {
+                return res.status(500).json(error.message);
+            }
+        })
+    };
+}
+
+
     // const password = req.body.password;
     // const userID = res.locals.userID;
-    let password = '$2b$10$4xflK767DkztLaQ3bGLb/OTyppSCJJmM/VFcz2/cWoeH0/eJiXaRS';
-    let id = 18;
-    let sqlFindUser = "SELECT password FROM User WHERE id = ?"; // ajouter avatar quand les routes seront prétes
-    connection.query(sqlFindUser, [id], function (err, result) {
-        if (err) {
-            return res.status(500).json(err.message);
-        }
-        if (result.length == 0) {
-            return res.status(401).json({ error: "Utilisateur non trouvé !" });
-        }
-
-        // const filename = result[0].avatar.split("../gif")[1];
-        // if (filename !== "avatarDefault.jpg") {
-        //     fs.unlink(`images/${filename}`, (e) => { // On supprime le fichier image en amont
-        //         if (e) {
-        //             console.log(e);
-        //         }
-        //     })
-        // }
-
-        bcrypt.compare(password,result[0].password)
-            .then(valid => {
-                if (!valid) {
-                    return res.status(401).json({ error: "Mot de passe incorrect !" });
-                }
-                let sqlDeleteUser = "DELETE FROM User WHERE id = ?";
-                connection.query(sqlDeleteUser, [id], function (err, result) {
-                    if (err) {
-                        return res.status(500).json(err.message);
-                    };
-                    if (result.affectedRows == 0) {
-                        return res.status(400).json({ message: "Suppression échouée" });
-                    }
-                    res.status(200).json({ message: "Utilisateur supprimé !" });
-                });
-            })
-            .catch(e => res.status(500).json(e));
-    });
-}
+//     let password = '$2b$10$4xflK767DkztLaQ3bGLb/OTyppSCJJmM/VFcz2/cWoeH0/eJiXaRS';
+//     let id = 18;
+//     let sqlFindUser = "SELECT password FROM User WHERE id = ?"; // ajouter avatar quand les routes seront prétes
+//
+//         // const filename = result[0].avatar.split("../gif")[1];
+//         // if (filename !== "avatarDefault.jpg") {
+//         //     fs.unlink(`images/${filename}`, (e) => { // On supprime le fichier image en amont
+//         //         if (e) {
+//         //             console.log(e);
+//         //         }
+//         //     })
+//         // }
+//
+//         bcrypt.compare(password,result[0].password)
+//             .then(valid => {
+//                 if (!valid) {
+//                     return res.status(401).json({ error: "Mot de passe incorrect !" });
+//                 }
+//                 let sqlDeleteUser = "DELETE FROM User WHERE id = ?";
+//                 connection.query(sqlFindUser, [id], function (err, result) {
+//                     if (err) {
+//                         return res.status(500).json(err.message);
+//                     };
+//                     if (result.affectedRows == 0) {
+//                         return res.status(400).json({ message: "Suppression échouée" });
+//                     }
+//                     res.status(200).json({ message: "Utilisateur supprimé !" });
+//                 });
+//             })
+//             .catch(e => res.status(500).json(e));
+//     });
+// }
 
 // @todo route logout ? on supp le token? voir jsonwebtoken si solution ou supp avec session storage cote front ?
 

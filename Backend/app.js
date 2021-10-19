@@ -16,7 +16,7 @@ const gifRoutes = require ('./routes/gif');
 //Import de la route dédiée aux utilisateurs
 const userRoutes = require('./routes/user');
 //Import de la route dédiée au commentaires
-const commenRoutes = require('./routes/comment');
+const commentRoutes = require('./routes/comment');
 
 const app = express();
 
@@ -53,6 +53,9 @@ app.use('/api/gif', gifRoutes);
 
 //Routes utilisateurs
 app.use('/api/auth', userRoutes);
+
+//Routes Commentaires
+app.use('/api/comment', commentRoutes);
 
 //Export app.js pour server.js
 module.exports = app;

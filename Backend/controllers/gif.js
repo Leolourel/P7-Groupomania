@@ -20,9 +20,7 @@ const fs =require('fs');
 exports.getAllGif = (req, res, next) => {
     const userID = res.locals.userID;
     // const userID = "42";
-    const sqlFeed = "SELECT* FROM gif g LEFT JOIN user u ON g.user_id = u.id";
-    let sqlGetPosts;
-    sqlGetPosts = `SELECT *  FROM gif`;
+    const sqlFeed = "SELECT g.id gif_id, g.title, g.url, g.date gif_date, gu.pseudo gif_user_pseudo, gu.avatar gif_user_avatar, c.id comment_id, c.content comment_content, c.date comment_date, cu.pseudo comment_user_pseudo, cu.avatar comment_user_avatar FROM gif g LEFT JOIN user gu ON g.user_id = gu.id LEFT JOIN comment c ON g.id = c.gif_id LEFT JOIN user cu ON c.user_id = cu.id" ;
     connection.query(sqlFeed, function (err, result) {
         if (err) {
             return res.status(500).json(err.message);
@@ -30,7 +28,41 @@ exports.getAllGif = (req, res, next) => {
         if (result.length == 0) {
             return res.status(400).json({ message: "Aucun post à afficher !" });
         }
-        res.status(200).json(result);
+        const gifs = {};
+        result.forEach(row =>{
+            // console.log(row)
+            const gif = {
+                id : row.gif_id,
+                title: row.title,
+                url: row.url,
+                date: row.gif_date,
+                author : {
+                    pseudo : row.gif_user_pseudo,
+                    avatar: row.gif_user_avatar
+                },
+                comments : {}
+            }
+            const comment = {
+                id : row.comment_id,
+                content : row.comment_content,
+                date : row.comment_date,
+                author : {
+                    pseudo : row.comment_user_pseudo,
+                    avatar: row.comment_user_avatar
+                }
+            }
+            // console.log(gif,comment)
+            if (gifs[gif.id] === undefined) {
+                // gif n'est pas dans la liste on le rajoute
+                gif.comments[comment.id] = comment
+                gifs[gif.id] = gif
+            } else {
+                // le gif est déja dans la liste on rajoute seulement son commentaire
+                gifs[gif.id].comments[comment.id] = comment
+            }
+        })
+        // console.log(gifs[11].comments)
+        res.status(200).json(gifs);
     });
 }
 
