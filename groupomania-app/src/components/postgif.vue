@@ -5,7 +5,7 @@
           <div class="col-5 d-flex flex-direction-row ">
             <img :src="gif.avatar" class="img-fluid img-thumbnail rounded w-25">
             <div class="">
-              <p>{{gif.pseudo}}</p>
+              <p>{{gif.author.pseudo}}</p>
               <p> {{gif.date}}</p>
             </div>
           </div>
@@ -33,8 +33,8 @@
            <input type="textarea"  name="comment" value="Ecriver ici votre commentaire...">
          </formulaire>
        </div>
-       <div class="row">
-         <p class="col">{{gif.content}}</p>
+       <div class="row" v-for="comments in gifs" :key="comments.comments.id">
+         <p class="col">{{ comments.comments}}</p>
        </div>
      </div>
 </div>
@@ -73,6 +73,8 @@ export default {
   //   }
   // },
 }
+
+
 </script>
 
 <style scoped>

@@ -1,6 +1,28 @@
 <template>
 <navbar/>
-  <h1>CREATE POST TEST</h1>
+
+  <div class="container">
+    <div class="row">
+      <h2 class="col">Ajouter une publication</h2>
+    </div>
+    <form>
+      <div>
+        <p>Titre de la publication</p>
+        <textarea></textarea>
+      </div>
+      <br>
+      <div>
+        <p>Lien URL du GIF</p>
+        <textarea></textarea>
+      </div>
+      <br>
+      <div>
+        <button>Ajouter une publication</button>
+      </div>
+    </form>
+  </div>
+
+
 </template>
 
 <script>

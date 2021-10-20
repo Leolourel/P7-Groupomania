@@ -6,17 +6,8 @@ const fs =require('fs');
 //@todo getall gif et getOne gif route, type de jointure pour mes select : SELECT *  FROM gif g INNER JOIN user u ON u.id = g.user_id
 
 
-//acceder à toutes les sauces
-// exports.getAllGif = (req, res, next) => {
-//     //On utilise la méthode find pour obtenir l'array de toutes les sauces dans la base de données
-//     Gif.find()
-//         //Si ok on retourne un tableau de toutes les données, sinon on retourne un message d'erreur
-//         .then((gif) => {res.status(200).json(gif);})
-//         .catch((error) => {res.status(400).json({error});
-//         });
-// };
 
-//acceder à tous les gifs
+// acceder à tous les gifs
 exports.getAllGif = (req, res, next) => {
     const userID = res.locals.userID;
     // const userID = "42";
