@@ -29,25 +29,33 @@
        <hr>
        <div class="row ">
          <img src="#" class="col-2">
-         <formulaire class="col-8">
-           <input type="textarea"  name="comment" value="Ecriver ici votre commentaire...">
-         </formulaire>
+         <form class="col-8">
+           <input type="text" v-model="content" name="comment" @keyup.enter="sendComment">
+           <button type="submit" hidden="true" @click="sendComment"></button>
+         </form>
        </div>
-       <div class="row" v-for="comments in gifs" :key="comments.comments.id">
-         <p class="col">{{ comments.comments}}</p>
+       <div class="row" v-for="comment in comments" :key="comment.gif_id" >
+         <p class="col">{{ comment.content}} </p>
        </div>
      </div>
+
+
 </div>
 </template>
 
 <script>
 import axios from 'axios';
 
+//@todo: recuperer id du gif concerner pour envoyer le commentaire
+//@todo display une boucle pour les commentaires en rapport avec le gif
+
 export default {
   name: "postgif",
   data(){
     return {
       gifs : [],
+      comments : [],
+      content: "",
     }
   },
   props: {
@@ -58,9 +66,30 @@ export default {
           .then(reponse => {
         this.gifs = reponse.data
             console.log(this.gifs)
-          })
+          }),
+          axios
+              .get('http://localhost:3000/api/comment/')
+              .then(reponse => {
+                this.comments = reponse.data
+                console.log(this.comments)
+              })
   },
+  methods: {
+    sendComment(){
+      console.log(this)
+      const commentData = new FormData();
+      commentData.append("content", this.content);
+      commentData.append("user_id", this.$store.state.user.userId);
+      // commentData.append("gif_id", this.gifs.id) @todo recuperer l'id du gif concerner
 
+      axios.post("http://localhost:3000/api/comment/", commentData)
+          .then(() => this.$router.push('/'))
+          .catch(error => {
+            this.errorMessage = error.message;
+            console.error("There was an error!", error);
+          });
+    }
+  },
   // computed: {
   //   gifs(){
   //     return this.$store.getters.getGifs;

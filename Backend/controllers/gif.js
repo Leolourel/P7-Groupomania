@@ -2,6 +2,7 @@
 const connection = require('../models/connection');
 const mysql = require('mysql');
 const fs =require('fs');
+const jwt = require('jsonwebtoken');
 
 //@todo getall gif et getOne gif route, type de jointure pour mes select : SELECT *  FROM gif g INNER JOIN user u ON u.id = g.user_id
 
@@ -81,18 +82,19 @@ exports.getOneGif = (req, res, next) => {
 
 //créer un gif
 exports.createOneGif = (req, res, next) => {
-    // const userID = res.locals.userID;
-    // const legend = req.body.legend;
-    // const gifUrl = `${req.protocol}://${req.get("host")}/gif/${req.file.filename}`;
-    let user_id = "9";
-    let title = "testgif";
-    let gifUrl = "hello.gif";
+    // const userToken = req.headers.authorization;
+    // const userInfo = jwt.verify(userToken, process.env.TOKEN);
+    // const userId = userInfo.userId
+    const userId = req.body.user_id;
 
-    console.log(user_id,title,gifUrl);
+    const title = req.body.title;
+    const gifUrl = req.body.url;
+
+    console.log(userId,title,gifUrl);
 
     let sqlCreateGif = "INSERT INTO gif (id,user_id,title,url,date)" +
         "VALUES (NULL, ?, ?, ?,CURRENT_TIMESTAMP())";
-    let values = [user_id, title, gifUrl];
+    let values = [userId, title, gifUrl];
     connection.query(sqlCreateGif, values, function (err, result) {
         if (err) {
             return res.status(500).json(err.message);

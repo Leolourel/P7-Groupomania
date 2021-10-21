@@ -26,11 +26,11 @@ export default {
     deleteAccount() {
       axios.delete('http://localhost:3000/api/auth/delete', {
         data : {
-          id : this.$store.state.userInfos.id
+          id : this.$store.state.user.userId
         },
-        headers: {
-          'Authorization': this.$store.state.user.token
-        }
+        // headers: {
+        //   'Authorization': this.$store.state.user.token
+        // }
       })
           .then(() => {
             localStorage.clear();

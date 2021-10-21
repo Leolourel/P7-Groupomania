@@ -138,27 +138,39 @@ exports.login = (req, res, next) => {
 
 
 // Route delete user
-exports.delete = (req, res, next) => {
+exports.deleteAccount = (req, res, next) => {
 
+    const userId = req.params.id;
+    // const userId = 4;
+    const sql = "DELETE FROM Users WHERE id=?";
+    const sqlParams = [userId];
+    connection.query(sql, sqlParams, (error, results, fields) => {
+        if (error) {
+            res.status(500).json({ "error": error.sqlMessage });
+        } else {
+            // utilisateur supprimé dans la BDD, il faut ensuite supprimer le cookie permettant d'identifier les requêtes.
 
-    const userToken = req.headers.authorization;
+            res.status(201).json({ message: 'Utilisateur supprimé' });
+        }
+    });
+    // const userToken = req.headers.authorization;
+    //
+    // const userInfo = jwt.verify(userToken, process.env.TOKEN);
+    //
+    // const userId = userInfo.userId;
+    // const userId = 4;
+        //
+        // const sqlDeleteUser = "DELETE FROM users WHERE id = ? ";
+        //
+        // // Requête
+        // connection.query(sqlDeleteUser, [userId], (error, res) => {
+        //     if (!error) {
+        //         res.status(200).json({message: "Utilisateur supprimé"});
+        //     } else {
+        //         return res.status(500).json(error.message);
+        //     }
+        // })
 
-    const userInfo = jwt.verify(userToken, process.env.TOKEN);
-
-    const userId = userInfo.userId;
-
-    if (userId === req.params.id) {
-        const sqlDeleteUser = "DELETE FROM users WHERE id = ? ";
-
-        // Requête
-        connection.query(sqlDeleteUser, [userId], (error, res) => {
-            if (!error) {
-                res.status(200).json({message: "Utilisateur supprimé"});
-            } else {
-                return res.status(500).json(error.message);
-            }
-        })
-    };
 }
 
 
