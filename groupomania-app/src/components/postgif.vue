@@ -65,15 +65,9 @@ export default {
       axios
           .get('http://localhost:3000/api/gif/')
           .then(reponse => {
-        this.gifs = reponse.data
+        this.gifs = reponse.data;
             console.log(this.gifs)
           })
-          // axios
-          //     .get('http://localhost:3000/api/comment/')
-          //     .then(reponse => {
-          //       this.comments = reponse.data
-          //       console.log(this.comments)
-          //     })
   },
   methods: {
     sendComment(){

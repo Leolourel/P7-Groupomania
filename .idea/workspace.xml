@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/controllers/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/gif.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +72,7 @@
       <workItem from="1632838004244" duration="16910000" />
       <workItem from="1633502670546" duration="23768000" />
       <workItem from="1634201258902" duration="16000" />
-      <workItem from="1634201296287" duration="65662000" />
+      <workItem from="1634201296287" duration="71980000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -240,7 +242,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634892386637</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="V-if pour suppression gif, affichage comment et suppression comment ok &#10;Commit avant test route modify user">
+      <created>1634911407045</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1634911407045</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +260,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="Backend" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -289,6 +310,7 @@
     <MESSAGE value="Commit avant essaie create a post" />
     <MESSAGE value="Commit avant modification css bootstrap" />
     <MESSAGE value="1er modification bootstrap, commit avant essaie du v-if dans v-for du postgif pour la modification du gif" />
-    <option name="LAST_COMMIT_MESSAGE" value="1er modification bootstrap, commit avant essaie du v-if dans v-for du postgif pour la modification du gif" />
+    <MESSAGE value="V-if pour suppression gif, affichage comment et suppression comment ok &#10;Commit avant test route modify user" />
+    <option name="LAST_COMMIT_MESSAGE" value="V-if pour suppression gif, affichage comment et suppression comment ok &#10;Commit avant test route modify user" />
   </component>
 </project>

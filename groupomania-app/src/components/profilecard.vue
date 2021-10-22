@@ -57,27 +57,21 @@ export default {
         data : {
           id : this.$store.state.user.userId
         },
-        // headers: {
-        //   'Authorization': this.$store.state.user.token
-        // }
+        headers: {
+          'Authorization': this.$store.state.user.token
+        }
       })
-          .then(() => {
+          .then(()  => {
             localStorage.clear();
-            this.$router.push('/');
+            window.location.reload()
+            console.log('requete envoyer')
           })
-          .catch((err) => {
-            if (err.response.status == 401) {
-              this.$router.push("/")
-            } else {
+          .catch(err => {
               console.log('Error: ', err)
-            }
           })
     },
-    // placeHolderPseudo() {
-    //   document.getElementById('userPseudo').placeholder = this.user.pseudo;
-    // },
     switchToProfil: function () {
-      this.mode = 'profil'
+      this.mode = 'profil';
     },
     switchToModifyProfil: function (){
       this.mode = 'modify'

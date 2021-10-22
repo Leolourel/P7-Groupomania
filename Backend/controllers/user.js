@@ -8,34 +8,13 @@ dotenv = require('dotenv').config();
 
 //@todo route update user
 
-// //Hashage de l'adresse mail qui va servir au route signup et login
-// function hashEmail(sentence) {
-//     if (typeof sentence === "string") {
-//         let headMail = sentence.slice(0,1);
-//         let bodyMail = sentence.slice(1, sentence.length-4);
-//         let bottomMail = sentence.slice(sentence.length-4, sentence.length);
-//         let final = [];
-//         var masked = bodyMail.split('');
-//         var maskedMail = [];
-//         for(let i in masked) {
-//             masked[i] = '*';
-//             maskedMail += masked[i];
-//         }
-//         final += headMail + maskedMail + bottomMail
-//         return final;
-//     }
-//     console.log(sentence + " is not a mail");
-//     return false
-// }
 
 exports.getOneUser = (req, res, next) => { //jwt recup id a partir du token, ligne 11         const token = req.headers.authorization.split(' ')[1];
 
     const userToken = req.headers.authorization;
-
     const userInfo = jwt.verify(userToken, process.env.TOKEN);
-
     const userId = userInfo.userId
-    // const userToken = req.body.userId;
+
     console.log(userInfo, userId);
     let sqlGetUser;
 
@@ -72,10 +51,7 @@ exports.getAllUsers = (req, res, next) => {
 
 //Sauvegarde un nouvel utilisateur et crypte son mot de passe avec bcrypt
 exports.signup = (req, res, next) => {
-    // connection.query('SELECT * FROM user', function (error, results, fields) {
-    //     if (error) throw error;
-    //     console.log('The solution is: ', results);
-    // });
+
     let email = req.body.email;
     let password = req.body.password;
     let pseudo = req.body.pseudo;
@@ -100,9 +76,6 @@ exports.login = (req, res, next) => {
 
     const email = req.body.email;
     const password = req.body.password;
-    // const email = "leotesttest@gmail.com";
-    // const password = "leolourel";
-    // const userid = 17;
 
     const sqlFindUser = "SELECT id, password FROM user WHERE email = ?";
 
@@ -140,36 +113,23 @@ exports.login = (req, res, next) => {
 // Route delete user
 exports.deleteAccount = (req, res, next) => {
 
-    const userId = req.params.id;
-    // const userId = 4;
-    const sql = "DELETE FROM Users WHERE id=?";
-    const sqlParams = [userId];
-    connection.query(sql, sqlParams, (error, results, fields) => {
-        if (error) {
-            res.status(500).json({ "error": error.sqlMessage });
-        } else {
-            // utilisateur supprimé dans la BDD, il faut ensuite supprimer le cookie permettant d'identifier les requêtes.
+    const userId = req.body.id;
+    // const userToken = req.headers.authorization;
+    const sqlDeleteUser = "DELETE FROM `user` WHERE id=?";
+    // const sqlParams = [userId];
 
+    console.log(userId);
+    connection.query(sqlDeleteUser, [userId], function (error) {
+        if (error) {
+            res.status(500).json("error");
+            console.log('erreur')
+        } else {
+            // utilisateur supprimé dans la BDD
             res.status(201).json({ message: 'Utilisateur supprimé' });
+            console.log('supprimé')
+
         }
     });
-    // const userToken = req.headers.authorization;
-    //
-    // const userInfo = jwt.verify(userToken, process.env.TOKEN);
-    //
-    // const userId = userInfo.userId;
-    // const userId = 4;
-        //
-        // const sqlDeleteUser = "DELETE FROM users WHERE id = ? ";
-        //
-        // // Requête
-        // connection.query(sqlDeleteUser, [userId], (error, res) => {
-        //     if (!error) {
-        //         res.status(200).json({message: "Utilisateur supprimé"});
-        //     } else {
-        //         return res.status(500).json(error.message);
-        //     }
-        // })
 
 }
 
