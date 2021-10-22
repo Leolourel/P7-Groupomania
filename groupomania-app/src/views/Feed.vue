@@ -1,9 +1,6 @@
 <template>
-<navbar/>
-<h1> FEED TEST </h1>
-
-<postgif/>
-
+  <navbar/>
+  <postgif/>
 </template>
 
 <script>

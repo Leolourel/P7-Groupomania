@@ -1,67 +1,52 @@
 <template>
-<nav id="navbar">
-    <div><img id="logo" src="../assets/icon-left-font.png"></div>
-    <div><button v-on:click="switchToLogin">Se connecter</button></div>
-    <div><button v-on:click="switchToCreateAccount()">S'inscrire</button></div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-brand"><img id="logo" src="../assets/icon-left-font.png"></div>
+    <div><button type="button" class="btn btn-outline-danger" v-on:click="switchToLogin">Se connecter</button></div>
+    <div><button type="button" class="btn btn-outline-danger" v-on:click="switchToCreateAccount()">S'inscrire</button></div>
+  </div>
 </nav>
 
-<div>
-  <div  id="container"> <!-- v-if connection -->
-    <h1 v-if="mode == 'login'">Connexion</h1>
-    <h1 v-else>Inscription</h1>
-    <div>
-      <p v-if="mode == 'login'">Tu n'as pas encore de compte ? <span @click="switchToCreateAccount">Créer un compte</span></p>
-      <p v-else>Tu as déja un compte ? <span @click="switchToLogin()">Se connecter</span></p>
+<div id="container">
+  <div class=" container-sm border border-1 rounded mt-5 bg-light ">
+ <!-- v-if connection -->
+    <h1 v-if="mode == 'login'" class="mt-5 text-start ms-2 text-danger">Se connecter </h1>
+    <h1 v-else class="mt-5 text-start ms-2 text-danger">Inscription</h1>
+    <div v-if="mode == 'create'" class="mt-5">
+      <p class="text-start ms-2">Pseudo</p>
+      <input v-model="pseudo" type="text" placeholder="Pseudo" class="form-control">
     </div>
-    <div v-if="mode == 'create'">
-      <p>Pseudo</p>
-      <input v-model="pseudo" type="text" placeholder="Pseudo">
+    <div class="mt-5">
+      <p class="text-start ms-2">Adresse e-mail</p>
+      <input v-model="email" type="text" placeholder="Adresse-mail" class="form-control">
     </div>
-    <div>
-      <p>Adresse e-mail</p><br>
-      <input v-model="email" type="text" placeholder="Adresse-mail">
+    <div class="mt-5">
+      <p class="text-start ms-2">Mot de passe</p>
+      <input v-model="password" type="password" placeholder="Mot de passe" class="form-control">
     </div>
-    <div>
-      <p>Mot de passe</p><br>
-      <input v-model="password" type="password" placeholder="Mot de passe">
-    </div>
-    <div v-if="mode == 'login' && status == 'error_login'">
+    <div v-if="mode == 'login' && status == 'error_login'" class="mt-3">
       <p>adresse mail et/ou mot de passe invalide</p>
     </div>
-    <div v-if="mode == 'create' && status == 'error_create'">
+    <div v-if="mode == 'create' && status == 'error_create'" class="mt-3">
       <p>adresse mail déja utilisée</p>
     </div>
     <div>
-      <button @click="login()" class="button" :class="{'button--disabled' : !validatedFields}" v-if="mode == 'login'">
+      <button @click="login()" type="button" class="btn btn-outline-secondary mt-5 mb-5 btn-lg" :class="{'button--disabled' : !validatedFields}" v-if="mode == 'login'">
         <span v-if="status == 'loading'">Connexion en cours...</span>
         <span v-else>Connexion</span>
       </button>
-      <button @click="createAccount()" class="button" :class="{'button--disabled' : !validatedFields}" v-else>
+      <button @click="createAccount()" class="btn btn-outline-secondary mt-5 mb-5 btn-lg" :class="{'button--disabled' : !validatedFields}" v-else>
         <span v-if="status == 'loading'">Création en cours...</span>
         <span v-else>Créer un compte</span></button>
     </div>
-
   </div>
+<div>
+  <div>
+    <p v-if="mode == 'login'">Tu n'as pas encore de compte ? <span @click="switchToCreateAccount" class="hover-overlay">Créer un compte</span></p>
+    <p v-else>Tu as déja un compte ? <span @click="switchToLogin()">Se connecter</span></p>
+  </div>
+</div>
 
-
-<!--  <div id="containersignup" v-else> &lt;!&ndash; v-else signup &ndash;&gt;-->
-<!--        <h1>S'inscrire</h1>-->
-<!--        <div>-->
-<!--          <p>Tu as deja un compte ? <span>se connecter</span></p>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--              <p>Pseudo</p><br>-->
-<!--             <input type="text" placeholder="Pseudo">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--              <p>Adresse e-mail</p><br>-->
-<!--              <input type="text" placeholder="Adresse-mail">-->
-<!--        </div>-->
-<!--        <div>-->
-<!--             <p>Mot de passe</p><br>-->
-<!--             <input type="password" placeholder="Mot de passe">-->
-<!--        </div>-->
-<!--  </div>-->
 
 </div>
 </template>

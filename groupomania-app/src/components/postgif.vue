@@ -1,16 +1,16 @@
 <template>
 <div class="container d-flex flex-column align-items-center ">
-     <div class="w-50 border border-1 rounded mt-5" v-for="gif in gifs" :key="gif.id">
+     <div class="w-50 border border-1 rounded mt-5 bg-light mb-5" v-for="gif in gifs" :key="gif.id">
        <div class="row mt-5 justify-content-between">
-          <div class="col-5 d-flex flex-direction-row ">
-            <img :src="gif.avatar" class="img-fluid img-thumbnail rounded w-25">
-            <div class="">
-              <p>{{gif.author.pseudo}}</p>
-              <p> {{gif.date}}</p>
+          <div class="col-5 d-flex flex-direction-row ms-3">
+            <img :src="gif.author.avatar" class="img-fluid rounded-circle col-3">
+            <div class="col-4 mt-2 ms-2">
+              <p class="fs-5">{{gif.author.pseudo}}</p>
+              <p class="fs-6 fw-lighter"> {{gif.date}}</p>
             </div>
           </div>
 
-         <div class="dropdown col-3">
+         <div class="dropdown col-3 mt-2">
            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
              ...
            </button>
@@ -20,23 +20,23 @@
            </ul>
          </div>
        </div>
-       <div class="row">
-         <h2 class="col-8"><p>{{gif.title}}</p></h2>
-       </div>
-       <div class="row justify-content-center+">
+       <div class="d-flex flex-column align-items-center">
+           <div class="row">
+             <h2 class="col"><p>{{gif.title}}</p></h2>
+           </div>
            <img :src="gif.url" class="col-10 img-fluid img-thumbnail rounded w-75">
        </div>
        <hr>
-       <div class="row ">
-         <img src="#" class="col-2">
-         <form class="col-8">
-           <input type="text" v-model="content" name="comment" @keyup.enter="sendComment">
+       <div class="row d-flex flex-row ms-3 mb-2">
+         <img :src="gif.author.avatar" class="col-2 img-fluid rounded-circle">
+         <div class="col-8 ">
+           <textarea class="form-control" rows="1" v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter="sendComment"></textarea>
            <button type="submit" hidden="true" @click="sendComment"></button>
-         </form>
+         </div>
        </div>
-       <div class="row" v-for="comment in comments" :key="comment.gif_id" >
-         <p class="col">{{ comment.content}} </p>
-       </div>
+<!--       <div class="row" v-for="comment in comments" :key="comment.gif_id" >-->
+<!--         <p class="col">{{ comment.content}} </p>-->
+<!--       </div>-->
      </div>
 
 
@@ -90,17 +90,6 @@ export default {
           });
     }
   },
-  // computed: {
-  //   gifs(){
-  //     return this.$store.getters.getGifs;
-  //   }
-  // },
-  // methods: {
-  //   updateGif(){
-  //       axios.get('http://localhost:3000/api/gif/')
-  //           .then( reponse => this.gifs = reponse.data);
-  //   }
-  // },
 }
 
 

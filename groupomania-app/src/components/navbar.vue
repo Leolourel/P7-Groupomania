@@ -1,11 +1,11 @@
 <template>
 
-<nav class="container">
-  <div class="row justify-content-evenly">
-    <div class="col-2"><img id="logo" src="../assets/icon-left-font.png" @click="goToFeed()"></div>
-    <button type="button" class="btn btn-outline-secondary btn-sm col-2" @click="goToProfil()">Profil</button>
-    <button type="button" class="btn btn-outline-secondary col-2" @click="goToCreatePost()">Nouvelle publication</button>
-    <button @click="logout()" class="btn btn-outline-secondary col-2">Déconnexion</button>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-brand"><img id="logo" src="../assets/icon-left-font.png" @click="goToFeed()"></div>
+    <button type="button" class="btn btn-outline-danger" @click="goToProfil()">Profil</button>
+    <button type="button" class="btn btn-outline-danger" @click="goToCreatePost()">Nouvelle publication</button>
+    <button @click="logout()" class="btn btn-outline-danger">Déconnexion</button>
   </div>
 </nav>
 </template>
