@@ -12,7 +12,7 @@ const jwt = require('jsonwebtoken');
 exports.getAllGif = (req, res, next) => {
     const userID = res.locals.userID;
     // const userID = "42";
-    const sqlFeed = "SELECT g.id gif_id, g.title, g.url, g.date gif_date, gu.pseudo gif_user_pseudo, gu.avatar gif_user_avatar, c.id comment_id, c.content comment_content, c.date comment_date, cu.pseudo comment_user_pseudo, cu.avatar comment_user_avatar FROM gif g LEFT JOIN user gu ON g.user_id = gu.id LEFT JOIN comment c ON g.id = c.gif_id LEFT JOIN user cu ON c.user_id = cu.id" ;
+    const sqlFeed = "SELECT g.id gif_id, g.title, g.url, g.date gif_date, gu.pseudo gif_user_pseudo, gu.avatar gif_user_avatar, gu.id gif_user_id, c.id comment_id, c.content comment_content, c.date comment_date, c.gif_id comment_gif_id, cu.pseudo comment_user_pseudo, cu.id comment_user_id, cu.avatar comment_user_avatar FROM gif g LEFT JOIN user gu ON g.user_id = gu.id LEFT JOIN comment c ON g.id = c.gif_id LEFT JOIN user cu ON c.user_id = cu.id" ;
     connection.query(sqlFeed, function (err, result) {
         if (err) {
             return res.status(500).json(err.message);
@@ -30,27 +30,30 @@ exports.getAllGif = (req, res, next) => {
                 date: row.gif_date,
                 author : {
                     pseudo : row.gif_user_pseudo,
-                    avatar: row.gif_user_avatar
+                    avatar: row.gif_user_avatar,
+                    id: row.gif_user_id
                 },
                 comments : {}
             }
             const comment = {
                 id : row.comment_id,
+                gif_id: row.comment_gif_id,
                 content : row.comment_content,
                 date : row.comment_date,
                 author : {
                     pseudo : row.comment_user_pseudo,
-                    avatar: row.comment_user_avatar
+                    avatar: row.comment_user_avatar,
+                    id: row.comment_user_id
                 }
             }
             // console.log(gif,comment)
             if (gifs[gif.id] === undefined) {
                 // gif n'est pas dans la liste on le rajoute
-                gif.comments[comment.id] = comment
+                gif.comments = comment
                 gifs[gif.id] = gif
             } else {
                 // le gif est déja dans la liste on rajoute seulement son commentaire
-                gifs[gif.id].comments[comment.id] = comment
+                gifs[gif.id].comments = comment
             }
         })
         // console.log(gifs[11].comments)
@@ -143,5 +146,4 @@ exports.deleteOneGif = (req, res, next) => {
 
     });
 }
-//
-// exports.rateOneGif = (req, res, next) => {
+

@@ -125,7 +125,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 #logo {
   width: 150px;
 }

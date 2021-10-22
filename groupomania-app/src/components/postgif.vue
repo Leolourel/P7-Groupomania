@@ -9,15 +9,10 @@
               <p class="fs-6 fw-lighter"> {{gif.date}}</p>
             </div>
           </div>
-
          <div class="dropdown col-3 mt-2">
-           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-             ...
+           <button id="btnDelete display" class="btn " type="button" v-if="gif.author.id == this.$store.state.user.userId" v-on:click="validateButtonDeleteGif">
+             X
            </button>
-           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-             <li><a class="dropdown-item" href="#">Modifier</a></li>
-             <li><a class="dropdown-item" href="#">Supprimer</a></li>
-           </ul>
          </div>
        </div>
        <div class="d-flex flex-column align-items-center">
@@ -34,9 +29,16 @@
            <button type="submit" hidden="true" @click="sendComment"></button>
          </div>
        </div>
-<!--       <div class="row" v-for="comment in comments" :key="comment.gif_id" >-->
-<!--         <p class="col">{{ comment.content}} </p>-->
-<!--       </div>-->
+       <div class="row d-flex flex-row ms-3 mb-2" v-if="gif.id == gif.comments.gif_id" >
+         <img :src="gif.comments.author.avatar" class="col-2 img-fluid rounded-circle">
+         <div class="col-6 bg-white rounded-pill">
+           <p class="text-start mt-2 ms-2 mb-1 fw-bold">{{ gif.comments.author.pseudo }}</p>
+           <p class="text-start ms-2 mb-1">{{ gif.comments.content }} </p>
+         </div>
+         <button class="btn col-1" type="button" v-if="gif.comments.author.id == this.$store.state.user.userId" >
+           X
+         </button>
+       </div>
      </div>
 
 
@@ -54,7 +56,6 @@ export default {
   data(){
     return {
       gifs : [],
-      comments : [],
       content: "",
     }
   },
@@ -66,13 +67,13 @@ export default {
           .then(reponse => {
         this.gifs = reponse.data
             console.log(this.gifs)
-          }),
-          axios
-              .get('http://localhost:3000/api/comment/')
-              .then(reponse => {
-                this.comments = reponse.data
-                console.log(this.comments)
-              })
+          })
+          // axios
+          //     .get('http://localhost:3000/api/comment/')
+          //     .then(reponse => {
+          //       this.comments = reponse.data
+          //       console.log(this.comments)
+          //     })
   },
   methods: {
     sendComment(){
@@ -88,7 +89,17 @@ export default {
             this.errorMessage = error.message;
             console.error("There was an error!", error);
           });
-    }
+    },
+    validateButtonDeleteGif: function() {  //@todo récuperer le gif user id pour pouvoir valider la fonction
+      const storageUser = JSON.parse(localStorage.getItem("user"));
+      console.log(storageUser.userId);
+      console.log(this.$store.state.user.userId)
+      if (this.$store.state.user.userId == this.gifs) {
+        this.sendComment() //@todo route delete gif
+      } else {
+        alert('vous netes pas lautheur de la publication');
+      }
+    },
   },
 }
 
@@ -96,17 +107,4 @@ export default {
 </script>
 
 <style scoped>
-#container{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-#movie--title{
-  width: 200px;
-}
-#movie--image{
-  width: 400px;
-  height: 400px;
-}
 </style>
