@@ -11,7 +11,6 @@ const jwt = require('jsonwebtoken');
 // acceder à tous les gifs
 exports.getAllGif = (req, res, next) => {
     const userID = res.locals.userID;
-    // const userID = "42";
     const sqlFeed = "SELECT g.id gif_id, g.title, g.url, g.date gif_date, gu.pseudo gif_user_pseudo, gu.avatar gif_user_avatar, gu.id gif_user_id, c.id comment_id, c.content comment_content, c.date comment_date, c.gif_id comment_gif_id, cu.pseudo comment_user_pseudo, cu.id comment_user_id, cu.avatar comment_user_avatar FROM gif g LEFT JOIN user gu ON g.user_id = gu.id LEFT JOIN comment c ON g.id = c.gif_id LEFT JOIN user cu ON c.user_id = cu.id" ;
     connection.query(sqlFeed, function (err, result) {
         if (err) {
@@ -116,7 +115,7 @@ exports.deleteGif = (req, res, next) => {
             res.status(500).json("error");
             console.log('erreur')
         } else {
-            // utilisateur supprimé dans la BDD
+            // Gif supprimé dans la BDD
             res.status(201).json({ message: 'Gif supprimé' });
             console.log('gif supprimé')
 

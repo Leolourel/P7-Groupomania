@@ -3,9 +3,9 @@ const connection = require('../models/connection');
 const mysql = require('mysql');
 
 exports.createComment = (req, res, next) => {
-    const postID = req.params.id;
-    const userID = res.locals.userID;
-    const body = req.body.body;
+    const postID = req.gif_id;
+    const userID = req.user_id;
+    const body = req.content;
 
     let sqlCreateComment;
     let values;
@@ -15,6 +15,9 @@ exports.createComment = (req, res, next) => {
     connection.query(sqlCreateComment, values, function (err, result) {
         if (err) {
             return res.status(500).json(err.message);
+            console.log(postID)
+            console.log(userID)
+            console.log(body)
         };
         res.status(201).json({ message: "Commentaire crée !" });
     });
@@ -23,8 +26,7 @@ exports.createComment = (req, res, next) => {
 
 exports.getAllComment = (req, res, next) => {
     const userID = res.locals.userID;
-    // const userID = "42";
-    const sqlFeed = "SELECT* FROM comment";
+    const sqlFeed = "SELECT c.id, c.gif_id, c.content, c.user_id, c.date, u.pseudo, u.avatar FROM comment c LEFT JOIN user u ON c.user_id = u.id";
     connection.query(sqlFeed, function (err, result) {
         if (err) {
             return res.status(500).json(err.message);
@@ -37,6 +39,23 @@ exports.getAllComment = (req, res, next) => {
 }
 
 
-// exports.deleteComment = (req, res, next) => {
-//
-// };
+
+
+exports.deleteComment = (req, res, next) => {
+
+    const commentId = req.body.id;
+    const sqlDeleteComment = "DELETE FROM comment WHERE id=?";
+
+    connection.query(sqlDeleteComment, [commentId], function (error) {
+        if (error) {
+            res.status(500).json("error");
+            console.log('erreur')
+        } else {
+            // Commentaire supprimé dans la BDD
+            res.status(201).json({ message: 'Commentaire supprimé' });
+            console.log('Commentaire supprimé')
+
+        }
+    });
+
+}

@@ -74,8 +74,10 @@ export default {
   },
   computed : {
     validatedFields: function() { /* @todo regex */
+      // let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
       if( this.mode == 'create'){
-        if (this.email != ""&& this.pseudo != "" && this.password != "" ) {
+        if (this.email != "" && this.pseudo != "" && this.password != "" ) {
           return true;
         } else {
           return false

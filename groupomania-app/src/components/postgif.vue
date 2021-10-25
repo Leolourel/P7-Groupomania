@@ -22,21 +22,23 @@
            <img :src="gif.url" class="col-10 img-fluid img-thumbnail rounded w-75">
        </div>
        <hr>
-       <div class="row d-flex flex-row ms-3 mb-2" v-if="gif.id == gif.comments.gif_id"  >
-         <img :src="gif.comments.author.avatar" class="col-2 img-fluid rounded-circle">
-         <div class="col-6 bg-white rounded-pill">
-           <p class="text-start mt-2 ms-2 mb-1 fw-bold">{{ gif.comments.author.pseudo }}</p>
-           <p class="text-start ms-2 mb-1">{{ gif.comments.content }} </p>
+       <div v-for="comment in comments" :key="comment.id">
+         <div class="row d-flex flex-row ms-3 mb-2" v-if="gif.id == comment.gif_id"  >
+           <img :src="comment.avatar" class="col-2 img-fluid rounded-circle">
+           <div class="col-6 bg-white rounded-pill">
+             <p class="text-start mt-2 ms-2 mb-1 fw-bold">{{ comment.pseudo }}</p>
+             <p class="text-start ms-2 mb-1">{{ comment.content }} </p>
+           </div>
+           <button class="btn col-1" type="button" v-if="comment.user_id == this.$store.state.user.userId" v-on:click="deleteComment(comment.id)">
+             X
+           </button>
          </div>
-         <button class="btn col-1" type="button" v-if="gif.comments.author.id == this.$store.state.user.userId" >
-           X
-         </button>
        </div>
        <div class="row d-flex flex-row ms-3 mb-2" >
          <img :src="this.$store.state.userInfos.avatar" class="col-2 img-fluid rounded-circle">
          <div class="col-8 ">
-           <textarea class="form-control" rows="1" v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter="sendComment"></textarea>
-           <button type="submit" hidden="true" @click="sendComment"></button>
+           <textarea class="form-control" rows="1" v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter="sendComment(gif.id)"></textarea>
+           <button type="submit" hidden="true" ></button>
          </div>
        </div>
      </div>
@@ -56,6 +58,7 @@ export default {
   data(){
     return {
       gifs : [],
+      comments : [],
       content: "",
     }
   },
@@ -68,26 +71,49 @@ export default {
               this.gifs = reponse.data;
               console.log(this.gifs)
           })
+    axios
+        .get('http://localhost:3000/api/comment/')
+        .then(reponse => {
+          this.comments = reponse.data;
+          console.log(this.comments)
+        })
   },
   methods: {
-    // sendComment(){
-    //   console.log(this)
-    //   const commentData = new FormData();
-    //   commentData.append("content", this.content);
-    //   commentData.append("user_id", this.$store.state.user.userId);
-    //   // commentData.append("gif_id", this.gifs.id) @todo recuperer l'id du gif concerner
-    //
-    //   axios.post("http://localhost:3000/api/comment/", commentData)
-    //       .then(() => this.$router.push('/'))
-    //       .catch(error => {
-    //         this.errorMessage = error.message;
-    //         console.error("There was an error!", error);
-    //       });
-    // },
+    sendComment(gifId){
+      const commentData = new FormData();
+      commentData.append("content", this.content);
+      commentData.append("user_id", this.$store.state.user.userId);
+      commentData.append("gif_id", gifId);
+
+      axios.post("http://localhost:3000/api/comment/", commentData)
+          .then(() => this.$router.push('/'))
+          .catch(error => {
+            this.errorMessage = error.message;
+            console.error("There was an error!", error);
+          });
+    },
     deleteGif(gifId) {
       axios.delete('http://localhost:3000/api/gif/delete', {
         data : {
           id : gifId
+        },
+        headers: {
+          'Authorization': this.$store.state.user.token
+        }
+      })
+          .then(()  => {
+            console.log('requete envoyer')
+            console.log(gifId)
+            window.location.reload()
+          })
+          .catch(err => {
+            console.log('Error: ', err)
+          })
+    },
+    deleteComment(commentId) {
+      axios.delete('http://localhost:3000/api/comment/delete', {
+        data : {
+          id : commentId
         },
         headers: {
           'Authorization': this.$store.state.user.token
