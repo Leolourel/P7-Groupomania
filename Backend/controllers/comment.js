@@ -35,11 +35,8 @@ exports.getAllComment = (req, res, next) => {
         res.status(200).json(result);
     });
 }
-// exports.findAllComments = (req, res, next) => {
 
-// };
-//
-//
+
 // exports.deleteComment = (req, res, next) => {
 //
 // };

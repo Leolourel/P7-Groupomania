@@ -114,9 +114,7 @@ exports.login = (req, res, next) => {
 exports.deleteAccount = (req, res, next) => {
 
     const userId = req.body.id;
-    // const userToken = req.headers.authorization;
     const sqlDeleteUser = "DELETE FROM `user` WHERE id=?";
-    // const sqlParams = [userId];
 
     console.log(userId);
     connection.query(sqlDeleteUser, [userId], function (error) {

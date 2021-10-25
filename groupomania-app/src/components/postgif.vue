@@ -10,7 +10,7 @@
             </div>
           </div>
          <div class="dropdown col-3 mt-2">
-           <button id="btnDelete display" class="btn " type="button" v-if="gif.author.id == this.$store.state.user.userId" v-on:click="validateButtonDeleteGif">
+           <button id="btnDelete display" class="btn " type="button" v-if="gif.author.id == this.$store.state.user.userId" v-on:click="deleteGif(gif.id)">
              X
            </button>
          </div>
@@ -22,14 +22,7 @@
            <img :src="gif.url" class="col-10 img-fluid img-thumbnail rounded w-75">
        </div>
        <hr>
-       <div class="row d-flex flex-row ms-3 mb-2">
-         <img :src="gif.author.avatar" class="col-2 img-fluid rounded-circle">
-         <div class="col-8 ">
-           <textarea class="form-control" rows="1" v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter="sendComment"></textarea>
-           <button type="submit" hidden="true" @click="sendComment"></button>
-         </div>
-       </div>
-       <div class="row d-flex flex-row ms-3 mb-2" v-if="gif.id == gif.comments.gif_id" >
+       <div class="row d-flex flex-row ms-3 mb-2" v-if="gif.id == gif.comments.gif_id"  >
          <img :src="gif.comments.author.avatar" class="col-2 img-fluid rounded-circle">
          <div class="col-6 bg-white rounded-pill">
            <p class="text-start mt-2 ms-2 mb-1 fw-bold">{{ gif.comments.author.pseudo }}</p>
@@ -38,6 +31,13 @@
          <button class="btn col-1" type="button" v-if="gif.comments.author.id == this.$store.state.user.userId" >
            X
          </button>
+       </div>
+       <div class="row d-flex flex-row ms-3 mb-2" >
+         <img :src="this.$store.state.userInfos.avatar" class="col-2 img-fluid rounded-circle">
+         <div class="col-8 ">
+           <textarea class="form-control" rows="1" v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter="sendComment"></textarea>
+           <button type="submit" hidden="true" @click="sendComment"></button>
+         </div>
        </div>
      </div>
 
@@ -65,34 +65,42 @@ export default {
       axios
           .get('http://localhost:3000/api/gif/')
           .then(reponse => {
-        this.gifs = reponse.data;
-            console.log(this.gifs)
+              this.gifs = reponse.data;
+              console.log(this.gifs)
           })
   },
   methods: {
-    sendComment(){
-      console.log(this)
-      const commentData = new FormData();
-      commentData.append("content", this.content);
-      commentData.append("user_id", this.$store.state.user.userId);
-      // commentData.append("gif_id", this.gifs.id) @todo recuperer l'id du gif concerner
-
-      axios.post("http://localhost:3000/api/comment/", commentData)
-          .then(() => this.$router.push('/'))
-          .catch(error => {
-            this.errorMessage = error.message;
-            console.error("There was an error!", error);
-          });
-    },
-    validateButtonDeleteGif: function() {  //@todo récuperer le gif user id pour pouvoir valider la fonction
-      const storageUser = JSON.parse(localStorage.getItem("user"));
-      console.log(storageUser.userId);
-      console.log(this.$store.state.user.userId)
-      if (this.$store.state.user.userId == this.gifs) {
-        this.sendComment() //@todo route delete gif
-      } else {
-        alert('vous netes pas lautheur de la publication');
-      }
+    // sendComment(){
+    //   console.log(this)
+    //   const commentData = new FormData();
+    //   commentData.append("content", this.content);
+    //   commentData.append("user_id", this.$store.state.user.userId);
+    //   // commentData.append("gif_id", this.gifs.id) @todo recuperer l'id du gif concerner
+    //
+    //   axios.post("http://localhost:3000/api/comment/", commentData)
+    //       .then(() => this.$router.push('/'))
+    //       .catch(error => {
+    //         this.errorMessage = error.message;
+    //         console.error("There was an error!", error);
+    //       });
+    // },
+    deleteGif(gifId) {
+      axios.delete('http://localhost:3000/api/gif/delete', {
+        data : {
+          id : gifId
+        },
+        headers: {
+          'Authorization': this.$store.state.user.token
+        }
+      })
+          .then(()  => {
+            console.log('requete envoyer')
+            window.location.reload()
+            console.log('requete envoyer')
+          })
+          .catch(err => {
+            console.log('Error: ', err)
+          })
     },
   },
 }

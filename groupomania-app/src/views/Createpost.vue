@@ -48,19 +48,19 @@ name: "Createpost",
   },
   methods: {
     sendPost() {
-      console.log(this)
       const formData = new FormData();
       formData.append("title", this.title);
       formData.append("url", this.url);
       formData.append("user_id", this.$store.state.user.userId);
 
       axios.post("http://localhost:3000/api/gif/", formData)
-          .then(() => this.$router.push('/'))
-          .catch(error => {
-            this.errorMessage = error.message;
+          .then( function (response) {
+            console.log(response);
+            this.$router.push('/');
+          })
+          .catch( function (error) {
             console.error("There was an error!", error);
           });
-
     },
   },
 }

@@ -12,7 +12,7 @@ export default {
   name: "Feed",
   components: {postgif, navbar},
   mounted: function () {
-    console.log(this.$store.state.user.userId);
+    // console.log(this.$store.state.user.userId);
     if (this.$store.state.user.id == -1) {
       this.$router.push('/');
       return;

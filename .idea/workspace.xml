@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/comment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/gif.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/routes/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/gif.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Createpost.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Createpost.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +74,8 @@
       <workItem from="1632838004244" duration="16910000" />
       <workItem from="1633502670546" duration="23768000" />
       <workItem from="1634201258902" duration="16000" />
-      <workItem from="1634201296287" duration="71980000" />
+      <workItem from="1634201296287" duration="72900000" />
+      <workItem from="1635153032426" duration="6230000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -249,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634911407045</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="route delete user ok">
+      <created>1634917763112</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1634917763112</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +296,6 @@
       <path value="$PROJECT_DIR$/Frontend/groupomania-app" />
       <path value="$PROJECT_DIR$/groupomania-app" />
     </ignored-roots>
-    <MESSAGE value="first commmit &#10;Création de la structure node js" />
     <MESSAGE value="Connection mysql backend" />
     <MESSAGE value="Commit avant test d'ecriture des requetes sql pour les routes users" />
     <MESSAGE value="Test modification controller user signup pour ne pas avoir besoin de la classe usermanager et n'avoir qu'une fonction" />
@@ -311,6 +320,7 @@
     <MESSAGE value="Commit avant modification css bootstrap" />
     <MESSAGE value="1er modification bootstrap, commit avant essaie du v-if dans v-for du postgif pour la modification du gif" />
     <MESSAGE value="V-if pour suppression gif, affichage comment et suppression comment ok &#10;Commit avant test route modify user" />
-    <option name="LAST_COMMIT_MESSAGE" value="V-if pour suppression gif, affichage comment et suppression comment ok &#10;Commit avant test route modify user" />
+    <MESSAGE value="route delete user ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="route delete user ok" />
   </component>
 </project>

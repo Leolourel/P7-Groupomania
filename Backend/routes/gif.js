@@ -13,6 +13,6 @@ const multer =      require('../middleware/multer-config');
 router.get('/',  gifsCtrl.getAllGif);
 router.post('/', multer, gifsCtrl.createOneGif);
 router.get('/:id', gifsCtrl.getOneGif);
-router.delete('/:id', gifsCtrl.deleteOneGif);
+router.delete('/delete', gifsCtrl.deleteGif);
 
 module.exports = router;

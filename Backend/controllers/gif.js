@@ -65,8 +65,6 @@ exports.getAllGif = (req, res, next) => {
 // acceder à un seul gif
 exports.getOneGif = (req, res, next) => {
     const postID = req.params.id;
-    // const postID = "4"
-
     let sqlGetPost;
 
     sqlGetPost = `SELECT *  FROM gif where gif.id = ?`;
@@ -85,11 +83,8 @@ exports.getOneGif = (req, res, next) => {
 
 //créer un gif
 exports.createOneGif = (req, res, next) => {
-    // const userToken = req.headers.authorization;
-    // const userInfo = jwt.verify(userToken, process.env.TOKEN);
-    // const userId = userInfo.userId
-    const userId = req.body.user_id;
 
+    const userId = req.body.user_id;
     const title = req.body.title;
     const gifUrl = req.body.url;
 
@@ -103,47 +98,30 @@ exports.createOneGif = (req, res, next) => {
             return res.status(500).json(err.message);
         };
         res.status(201).json({ message: "Gif crée !" });
+        console.log("gifcrée");
     });
 };
 
 
 
 // supprimer un gif
-exports.deleteOneGif = (req, res, next) => {
-    // const gifId = req.params.id;
-    // const userId = res.locals.userID;
-    let gifId = "6";
-    let userId = "10";
-    // let gifUrl = "test.gif"; //@todo supp après test, doublon de code verifier
+exports.deleteGif = (req, res, next) => {
 
-    let sqlSelectPost = "SELECT url FROM gif WHERE id = ?";
-    connection.query(sqlSelectPost, [gifId], function (err, result) {
-        if (result > 0) {
-            // const filename = result[0].gifUrl.split("/gif/")[1];
-            // fs.unlink(`gif/${filename}`
-                fs.unlink(gifUrl, () => { // On supprime le fichier image en amont
-                let sqlDeletePost = "DELETE FROM Post WHERE userID = ? AND postID = ?";
-                connection.query(sqlDeletePost, [userId, gifId], function (err, result) {
-                    if (err) {
-                        return res.status(500).json(err.message);
-                    };
-                    res.status(200).json({ message: "Post supprimé !" });
-                });
-            })
+    const gifId = req.body.id;
+    const sqlDeleteGif = "DELETE FROM `gif` WHERE id=?";
+
+    console.log(gifId);
+    connection.query(sqlDeleteGif, [gifId], function (error) {
+        if (error) {
+            res.status(500).json("error");
+            console.log('erreur')
         } else {
-            let sqlDeletePost = "DELETE FROM gif WHERE user_id = ? AND id = ?";
-            connection.query(sqlDeletePost, [userId, gifId], function (err, result) {
-                if (err) {
-                    return res.status(500).json(err.message);
-                };
-                res.status(200).json({ message: "Post supprimé !" });
-            });
+            // utilisateur supprimé dans la BDD
+            res.status(201).json({ message: 'Gif supprimé' });
+            console.log('gif supprimé')
+
         }
-        if (err) {
-            return res.status(500).json(err.message);
-        };
-
-
     });
+
 }
 
