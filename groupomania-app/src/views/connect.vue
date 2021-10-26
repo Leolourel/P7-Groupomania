@@ -15,6 +15,7 @@
           <button type="button" class="btn btn-outline-danger" v-on:click="switchToCreateAccount()">S'inscrire</button>
         </li>
       </ul>
+
     </div>
   </div>
 </nav>
