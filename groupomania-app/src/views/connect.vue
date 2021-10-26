@@ -18,11 +18,11 @@
     </div>
     <div class="mt-5">
       <p class="text-start ms-2">Adresse e-mail</p>
-      <input v-model="email" type="text" placeholder="Adresse-mail" class="form-control">
+        <input v-model="email" type="text" placeholder="Adresse-mail" class="form-control" id="inputMail" >
     </div>
     <div class="mt-5">
       <p class="text-start ms-2">Mot de passe</p>
-      <input v-model="password" type="password" placeholder="Mot de passe" class="form-control">
+      <input v-model="password" type="password" placeholder="Le Mot de passe doit contenier au minimum 8 caractères une lettre et un chiffre" class="form-control">
     </div>
     <div v-if="mode == 'login' && status == 'error_login'" class="mt-3">
       <p>adresse mail et/ou mot de passe invalide</p>
@@ -35,7 +35,7 @@
         <span v-if="status == 'loading'">Connexion en cours...</span>
         <span v-else>Connexion</span>
       </button>
-      <button @click="createAccount()" class="btn btn-outline-secondary mt-5 mb-5 btn-lg" :class="{'button--disabled' : !validatedFields}" v-else>
+      <button @click="createAccount()" class="btn btn-outline-secondary mt-5 mb-5 btn-lg" :class="{'button--disabled' : !validatedFields}" v-if="mode == 'create'" >
         <span v-if="status == 'loading'">Création en cours...</span>
         <span v-else>Créer un compte</span></button>
     </div>
@@ -74,13 +74,15 @@ export default {
   },
   computed : {
     validatedFields: function() { /* @todo regex */
-      // let emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
       if( this.mode == 'create'){
-        if (this.email != "" && this.pseudo != "" && this.password != "" ) {
+        if ( emailRegex.test(this.email)  && this.pseudo != "" && passwordRegex.test(this.password) ) {
           return true;
         } else {
-          return false
+          return false;
+          // document.getElementById('inputMail').classList.add('border-danger');
         }
       } else {
         if (this.email != "" && this.password != ""){
@@ -121,7 +123,15 @@ export default {
       }).catch(function(error){
         console.log(error)
       })
-    }
+    },
+    // isEmailValid: function () {
+    //   let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //   if (emailRegex.test(this.email)) {
+    //     console.log('ok')
+    //   } else {
+    //     console.log('regex pas ok')
+    //   }
+    // }
   }
 
 }
@@ -157,7 +167,8 @@ export default {
 
 .button--disabled {
   background:#cecece;
-  color:#ececec
+  color:#ececec;
+  pointer-events: none;
 }
 .button--disabled:hover {
   cursor:not-allowed;

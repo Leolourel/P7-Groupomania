@@ -11,6 +11,7 @@ if(!user) {
     user = {
         id: -1,
         token: '',
+        isAdmin: 0
     };
 }else {
     try{
@@ -35,6 +36,8 @@ const store = createStore({
             pseudo: "",
             email: "",
             avatar: "",
+            isAdmin: 0
+
         },
         // gifs: [{
         //     id: 1,

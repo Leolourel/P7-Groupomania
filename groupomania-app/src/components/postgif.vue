@@ -10,7 +10,7 @@
             </div>
           </div>
          <div class="dropdown col-3 mt-2">
-           <button id="btnDelete display" class="btn " type="button" v-if="gif.author.id == this.$store.state.user.userId" v-on:click="deleteGif(gif.id)">
+           <button id="btnDelete display" class="btn " type="button" v-if="gif.author.id == this.$store.state.user.userId || this.$store.state.user.isAdmin == 1" v-on:click="deleteGif(gif.id)">
              X
            </button>
          </div>
@@ -29,7 +29,7 @@
              <p class="text-start mt-2 ms-2 mb-1 fw-bold">{{ comment.pseudo }}</p>
              <p class="text-start ms-2 mb-1">{{ comment.content }} </p>
            </div>
-           <button class="btn col-1" type="button" v-if="comment.user_id == this.$store.state.user.userId" v-on:click="deleteComment(comment.id)">
+           <button class="btn col-1" type="button" v-if="comment.user_id == this.$store.state.user.userId || this.$store.state.user.isAdmin == 1" v-on:click="deleteComment(comment.id)">
              X
            </button>
          </div>

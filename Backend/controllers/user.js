@@ -77,7 +77,7 @@ exports.login = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
 
-    const sqlFindUser = "SELECT id, password FROM user WHERE email = ?";
+    const sqlFindUser = "SELECT id, password, isAdmin FROM user WHERE email = ?";
 
     connection.query(sqlFindUser, [email], function (err, result) {
         if (err) {
@@ -93,6 +93,7 @@ exports.login = (req, res, next) => {
                 }
                 // Si true, on renvoie un statut 200 et un objet JSON avec un userID + un token
                 res.status(200).json({
+                    isAdmin: result[0].isAdmin,
                     userId: result[0].id,
                     token: jwt.sign(
                         {

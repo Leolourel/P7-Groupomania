@@ -62,6 +62,7 @@ export default {
         }
       })
           .then(()  => {
+            alert("Votre compte sera supprimé définitivement");
             localStorage.clear();
             window.location.reload()
             console.log('requete envoyer')

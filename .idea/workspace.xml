@@ -3,11 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/controllers/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/comment.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/controllers/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/gif.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/routes/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/routes/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/gif.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/store/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +74,7 @@
       <workItem from="1633502670546" duration="23768000" />
       <workItem from="1634201258902" duration="16000" />
       <workItem from="1634201296287" duration="72900000" />
-      <workItem from="1635153032426" duration="12240000" />
+      <workItem from="1635153032426" duration="22279000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -265,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635167513923</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="test regex">
+      <created>1635174564353</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1635174564353</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +309,6 @@
       <path value="$PROJECT_DIR$/Frontend/groupomania-app" />
       <path value="$PROJECT_DIR$/groupomania-app" />
     </ignored-roots>
-    <MESSAGE value="Commit avant test d'ecriture des requetes sql pour les routes users" />
     <MESSAGE value="Test modification controller user signup pour ne pas avoir besoin de la classe usermanager et n'avoir qu'une fonction" />
     <MESSAGE value="Commit avant test insert into sql route signup" />
     <MESSAGE value="commit route signup sql done, debut de la route login" />
@@ -327,6 +333,7 @@
     <MESSAGE value="V-if pour suppression gif, affichage comment et suppression comment ok &#10;Commit avant test route modify user" />
     <MESSAGE value="route delete user ok" />
     <MESSAGE value="Test avant boucle commentaire" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test avant boucle commentaire" />
+    <MESSAGE value="test regex" />
+    <option name="LAST_COMMIT_MESSAGE" value="test regex" />
   </component>
 </project>
