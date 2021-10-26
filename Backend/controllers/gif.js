@@ -11,7 +11,16 @@ const jwt = require('jsonwebtoken');
 // acceder à tous les gifs
 exports.getAllGif = (req, res, next) => {
     const userID = res.locals.userID;
-    const sqlFeed = "SELECT  g.id gif_id, g.title, g.url, DATE_FORMAT(g.date, \"%d/%m/%Y\") gif_date, gu.pseudo gif_user_pseudo, gu.avatar gif_user_avatar, gu.id gif_user_id, c.id comment_id, c.content comment_content, c.date comment_date, c.gif_id comment_gif_id, cu.pseudo comment_user_pseudo, cu.id comment_user_id, cu.avatar comment_user_avatar FROM gif g LEFT JOIN user gu ON g.user_id = gu.id LEFT JOIN comment c ON g.id = c.gif_id LEFT JOIN user cu ON c.user_id = cu.id " ;
+    const sqlFeed = "SELECT " +
+        "g.id gif_id, g.title, g.url, DATE_FORMAT(g.date, \"%d/%m/%Y\") gif_date," +
+        "gu.pseudo gif_user_pseudo, gu.avatar gif_user_avatar, gu.id gif_user_id," +
+        "c.id comment_id, c.content comment_content, c.date comment_date, c.gif_id comment_gif_id," +
+        "cu.pseudo comment_user_pseudo, cu.id comment_user_id, cu.avatar comment_user_avatar " +
+        "FROM gif g " +
+        "LEFT JOIN user gu ON g.user_id = gu.id " +
+        "LEFT JOIN comment c ON g.id = c.gif_id " +
+        "LEFT JOIN user cu ON c.user_id = cu.id " +
+        "ORDER BY g.date DESC" ;
     connection.query(sqlFeed, function (err, result) {
         if (err) {
             return res.status(500).json(err.message);
@@ -19,21 +28,9 @@ exports.getAllGif = (req, res, next) => {
         if (result.length == 0) {
             return res.status(400).json({ message: "Aucun post à afficher !" });
         }
-        const gifs = {};
+        const gifs = [];
         result.forEach(row =>{
-            // console.log(row)
-            const gif = {
-                id : row.gif_id,
-                title: row.title,
-                url: row.url,
-                date: row.gif_date,
-                author : {
-                    pseudo : row.gif_user_pseudo,
-                    avatar: row.gif_user_avatar,
-                    id: row.gif_user_id
-                },
-                comments : {}
-            }
+            // on recupere le commentaire
             const comment = {
                 id : row.comment_id,
                 gif_id: row.comment_gif_id,
@@ -45,14 +42,30 @@ exports.getAllGif = (req, res, next) => {
                     id: row.comment_user_id
                 }
             }
-            // console.log(gif,comment)
-            if (gifs[gif.id] === undefined) {
-                // gif n'est pas dans la liste on le rajoute
-                gif.comments = comment
-                gifs[gif.id] = gif
-            } else {
-                // le gif est déja dans la liste on rajoute seulement son commentaire
-                gifs[gif.id].comments = comment
+            // on cherche si on a deja le gif
+            let gifExist = false;
+            for(let i = 0; i < gifs.length; i++){
+                if (gifs[i].id === row.gif_id) {
+                    // on ajoute le commentaire
+                    gifExist = true;
+                    gifs[i].comments.push(comment);
+
+                }
+            }
+            if(!gifExist) {
+                let gif = {
+                    id : row.gif_id,
+                    title: row.title,
+                    url: row.url,
+                    date: row.gif_date,
+                    author : {
+                        pseudo : row.gif_user_pseudo,
+                        avatar: row.gif_user_avatar,
+                        id: row.gif_user_id
+                    },
+                    comments : [comment]
+                }
+                gifs.push(gif);
             }
         })
         // console.log(gifs[11].comments)

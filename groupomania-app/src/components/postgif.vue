@@ -1,10 +1,10 @@
 <template>
-<div class="container d-flex flex-column align-items-center ">
-     <div class="w-50 border border-1 rounded mt-5 bg-light mb-5" v-for="gif in gifs" :key="gif.id">
-       <div class="row mt-5 justify-content-between">
-          <div class="col-5 d-flex flex-direction-row ms-3">
-            <img :src="gif.author.avatar" class="img-fluid rounded-circle col-3">
-            <div class="col-4 mt-2 ms-2">
+<div class="container-sm d-flex flex-column align-items-center ">
+     <div class="w-auto border border-1 rounded mt-5 bg-light mb-5" v-for="gif in gifs" :key="gif.id">
+       <div class="row mt-4 justify-content-between">
+          <div class="col-5 d-flex flex-direction-row ">
+<!--            <img :src="gif.author.avatar" class="img-fluid rounded-circle col-3">-->
+            <div class="col-4 mt-2 ms-5">
               <p class="fs-5">{{gif.author.pseudo}}</p>
               <p class="fs-6 fw-lighter"> {{gif.date}}</p>
             </div>
@@ -15,16 +15,16 @@
            </button>
          </div>
        </div>
-       <div class="d-flex flex-column align-items-center">
-           <div class="row">
-             <h2 class="col"><p>{{gif.title}}</p></h2>
+       <div class="d-flex flex-column align-items-center container-fluid">
+           <div class="row justify-content-center">
+             <h2 class="col text-wrap text-center"><p>{{gif.title}}</p></h2>
            </div>
-           <img :src="gif.url" class="col-10 img-fluid img-thumbnail rounded w-75">
+           <img :src="gif.url" class="col-10 img-fluid img-thumbnail rounded " id="gifImage">
        </div>
        <hr>
        <div v-for="comment in comments" :key="comment.id">
-         <div class="row d-flex flex-row ms-3 mb-2" v-if="gif.id == comment.gif_id"  >
-           <img :src="comment.avatar" class="col-2 img-fluid rounded-circle">
+         <div class="row d-flex flex-row mb-2 justify-content-center" v-if="gif.id == comment.gif_id"  >
+<!--           <img :src="comment.avatar" class="col-2 img-fluid rounded-circle">-->
            <div class="col-6 bg-white rounded-pill">
              <p class="text-start mt-2 ms-2 mb-1 fw-bold">{{ comment.pseudo }}</p>
              <p class="text-start ms-2 mb-1">{{ comment.content }} </p>
@@ -34,11 +34,11 @@
            </button>
          </div>
        </div>
-       <div class="row d-flex flex-row ms-3 mb-2" >
-         <img :src="this.$store.state.userInfos.avatar" class="col-2 img-fluid rounded-circle">
+       <div class="row d-flex flex-row mb-2 justify-content-center" >
+<!--         <img :src="this.$store.state.userInfos.avatar" class="col-2 img-fluid rounded-circle">-->
          <div class="col-8 ">
            <textarea class="form-control" rows="1" v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter="sendComment(gif.id)"></textarea>
-           <button type="submit" hidden="true" ></button>
+<!--           <button type="submit" hidden="true" ></button>-->
          </div>
        </div>
      </div>
@@ -135,4 +135,8 @@ export default {
 </script>
 
 <style scoped>
+
+#gifImage {
+  width: 450px;
+}
 </style>

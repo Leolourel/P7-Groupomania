@@ -1,9 +1,21 @@
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
-    <div class="navbar-brand"><img id="logo" src="../assets/icon-left-font.png"></div>
-    <div><button type="button" class="btn btn-outline-danger" v-on:click="switchToLogin">Se connecter</button></div>
-    <div><button type="button" class="btn btn-outline-danger" v-on:click="switchToCreateAccount()">S'inscrire</button></div>
+    <div class="navbar-brand"><img id="logo" src="../assets/icon-left-font.png">
+    </div>
+    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarConnect" aria-controls="navbarConnect" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarConnect">
+      <ul class="navbar-nav ms-5 w-100 d-flex justify-content-end gap-3" >
+        <li class="nav-item ">
+          <button type="button" class="btn btn-outline-danger" v-on:click="switchToLogin">Se connecter</button>
+        </li>
+        <li class="nav-item ms-5 me-5">
+          <button type="button" class="btn btn-outline-danger" v-on:click="switchToCreateAccount()">S'inscrire</button>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -139,7 +151,7 @@ export default {
 
 <style scoped lang="scss">
 #logo {
-  width: 150px;
+  width: 70px;
 }
 
 #navbar {

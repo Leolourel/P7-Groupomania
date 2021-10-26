@@ -7,13 +7,13 @@
     </div>
     <form name="createPost">
       <div class="row">
-        <label for="title" class="form-label text-start mt-4 mb-2 ms-5 fs-5">Titre de la publication</label>
-        <input type="text" class="form-control ms-5 w-75" id="title" rows="3" v-model="title">
+        <label for="title" class="form-label text-start mt-4 mb-2 ms-5 fs-5" id="labelTitle">Titre de la publication</label>
+        <input type="text" class="form-control ms-5 " id="title" rows="3" v-model="title">
       </div>
       <br>
-      <div class="row">
-        <label for="url" class="form-label text-start fs-5 ms-5">Lien URL de la publication</label>
-        <input type="text" class="form-control ms-5 w-75" id="url" rows="3" v-model="url">
+      <div class="row d-flex flex-column">
+        <label for="url" class="form-label text-start fs-5 ms-5 col" id="labelUrl">Lien URL de la publication</label>
+        <input type="text" class="form-control ms-5 col" id="url" rows="3" v-model="url">
       </div>
       <br>
       <div>
@@ -67,5 +67,31 @@ name: "Createpost",
 </script>
 
 <style scoped>
+#title{
+  width: 1000px;
+}#url{
+  width: 1000px;
+}
+#labelTitle{
+   width: 1000px;
+}
+#labelUrl{
+    width: 1000px;
+}
 
+@media only screen and (max-width: 1200px){
+  #title{
+    width: 80%;
+  }#labelTitle{
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 1200px){
+  #labelUrl{
+    width: 80%;
+  }
+  #url{
+    width: 80%;
+  }
+}
 </style>

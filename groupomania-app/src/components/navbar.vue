@@ -1,11 +1,25 @@
 <template>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
-    <div class="navbar-brand"><img id="logo" src="../assets/icon-left-font.png" @click="goToFeed()"></div>
-    <button type="button" class="btn btn-outline-danger" @click="goToProfil()">Profil</button>
-    <button type="button" class="btn btn-outline-danger" @click="goToCreatePost()">Nouvelle publication</button>
-    <button @click="logout()" class="btn btn-outline-danger">Déconnexion</button>
+    <div class="navbar-brand"><img id="logo" src="../assets/icon-left-font.png" @click="goToFeed()">
+    </div>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarGroupomania" aria-controls="navbarGroupomania" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarGroupomania">
+        <ul class="navbar-nav ms-5 w-100 d-flex justify-content-around gap-3" >
+          <li class="nav-item ms-5">
+            <button type="button" class="btn btn-outline-danger" @click="goToProfil()">Profil</button>
+          </li>
+          <li class="nav-item ms-5">
+            <button type="button" class="btn btn-outline-danger" @click="goToCreatePost()">Nouvelle publication</button>
+          </li>
+          <li class="nav-item ms-5">
+            <button @click="logout()" class="btn btn-outline-danger">Déconnexion</button>
+          </li>
+        </ul>
+      </div>
   </div>
 </nav>
 </template>
@@ -50,6 +64,7 @@ export default {
 }
 #logo{
   height: 70px;
+  cursor: pointer;
 }
 
 #button--gif{
