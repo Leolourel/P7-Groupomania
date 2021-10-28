@@ -37,8 +37,8 @@
        <div class="row d-flex flex-row mb-2 justify-content-center" >
 <!--         <img :src="this.$store.state.userInfos.avatar" class="col-2 img-fluid rounded-circle">-->
          <div class="col-8 ">
-           <textarea class="form-control" rows="1" v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter="sendComment(gif.id)"></textarea>
-<!--           <button type="submit" hidden="true" ></button>-->
+           <input  type="text" class="form-control"  v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter.self="sendComment(gif.id)">
+           <button type="submit" hidden="true" ></button>
          </div>
        </div>
      </div>
@@ -80,15 +80,19 @@ export default {
   },
   methods: {
     sendComment(gifId){
-      const commentData = new FormData();
-      commentData.append("content", this.content);
-      commentData.append("user_id", this.$store.state.user.userId);
-      commentData.append("gif_id", gifId);
+      // const commentData = new FormData();
+      // commentData.append("content", this.content);
+      // commentData.append("user_id", this.$store.state.user.userId);
+      // commentData.append("gif_id", gifId);
 
-      axios.post("http://localhost:3000/api/comment/", commentData)
-          .then(() => this.$router.push('/'))
-          .catch(error => {
-            this.errorMessage = error.message;
+      axios.post("http://localhost:3000/api/comment/create", {
+        content : this.content,
+        user_id : this.$store.state.user.userId,
+        gif_id : gifId
+      }).then( () => {
+            window.location.reload();
+          })
+          .catch(function (error) {
             console.error("There was an error!", error);
           });
     },

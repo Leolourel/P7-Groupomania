@@ -3,23 +3,25 @@ const connection = require('../models/connection');
 const mysql = require('mysql');
 
 exports.createComment = (req, res, next) => {
-    const postID = req.gif_id;
-    const userID = req.user_id;
-    const body = req.content;
+    const postID = req.body.gif_id;
+    const userID = req.body.user_id;
+    const content = req.body.content;
+    console.log(req.body)
 
-    let sqlCreateComment;
-    let values;
-
-    sqlCreateComment = "INSERT INTO comment VALUES (NULL, ?, ?, CURRENT_TIMESTAMP(), ?)";
-    values = [userID, postID, body];
+    let sqlCreateComment = "INSERT INTO comment (gif_id, user_id, content)" +
+        "VALUES (?, ?, ?)";
+    let values = [postID, userID, content];
     connection.query(sqlCreateComment, values, function (err, result) {
         if (err) {
             return res.status(500).json(err.message);
             console.log(postID)
             console.log(userID)
-            console.log(body)
+            console.log(content)
+            console.log('erreur commentaire');
+
         };
         res.status(201).json({ message: "Commentaire crée !" });
+        console.log('commentaire crée');
     });
 }
 

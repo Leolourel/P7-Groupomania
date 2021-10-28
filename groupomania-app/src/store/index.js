@@ -23,9 +23,7 @@ if(!user) {
             token:'',
         };
     }
-
 }
-
 const store = createStore({
 
     state: {
@@ -39,23 +37,7 @@ const store = createStore({
             isAdmin: 0
 
         },
-        // gifs: [{
-        //     id: 1,
-        //     title: 'test',
-        //     url:'test,'
-        // }]
     },
-    // getters: {
-    //     getGifs(state) {
-    //         return state.gifs;
-    //     }
-    // },
-    // methods: {
-    //   updateGif(){
-    //       instance.get('/api/gif/')
-    //           .then( reponse => this.gifs = reponse.data)
-    //   }
-    // },
     mutations: {
         setStatus: function (state, status) {
             state.status = status;
@@ -116,15 +98,6 @@ const store = createStore({
                 .catch(function () {
                 });
         },
-        // getAllGif: ({commit}) => {
-        //     instance.get('/api/gif/')
-        //         .then(function (response ) {
-        //             commit('gifs', response.data);
-        //             console.log(response.data)
-        //         })
-        //         .catch(function () {
-        //         })
-        // },
     }
 });
 

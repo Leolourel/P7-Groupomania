@@ -74,24 +74,6 @@ exports.getAllGif = (req, res, next) => {
 }
 
 
-// acceder à un seul gif
-exports.getOneGif = (req, res, next) => {
-    const postID = req.params.id;
-    let sqlGetPost;
-
-    sqlGetPost = `SELECT *  FROM gif where gif.id = ?`;
-    connection.query(sqlGetPost,[postID], function (err, result) {
-        if (err) {
-            return res.status(500).json(err.message);
-        };
-        if (result.length == 0) {
-            return res.status(400).json({ message: "Aucun post à afficher !" });
-        }
-        res.status(200).json(result);
-    });
-}
-
-
 
 //créer un gif
 exports.createOneGif = (req, res, next) => {
@@ -108,6 +90,7 @@ exports.createOneGif = (req, res, next) => {
     connection.query(sqlCreateGif, values, function (err, result) {
         if (err) {
             return res.status(500).json(err.message);
+            console.log("erreur gif")
         };
         res.status(201).json({ message: "Gif crée !" });
         console.log("gifcrée");

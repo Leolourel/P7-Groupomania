@@ -11,8 +11,8 @@ const multer =      require('../middleware/multer-config');
 //@todo rajouter le middlewar auth au routes une fois les test terminées
 
 router.get('/',  gifsCtrl.getAllGif);
-router.post('/',  gifsCtrl.createOneGif);
-router.get('/:id', gifsCtrl.getOneGif);
+router.post('/create',  gifsCtrl.createOneGif);
+// router.get('/:id', gifsCtrl.getOneGif);
 router.delete('/delete', gifsCtrl.deleteGif);
 
 module.exports = router;

@@ -5,7 +5,7 @@
     <div class="row ">
       <h2 class="col mt-5  text-danger text-start ms-5 mb-4 fw-bolder">Ajouter une publication</h2>
     </div>
-    <form name="createPost">
+    <div>
       <div class="row">
         <label for="title" class="form-label text-start mt-4 mb-2 ms-5 fs-5" id="labelTitle">Titre de la publication</label>
         <input type="text" class="form-control ms-5 " id="title" rows="3" v-model="title">
@@ -17,9 +17,9 @@
       </div>
       <br>
       <div>
-        <button class="btn btn-outline-dark text-center mb-5 mt-3" type="submit" @click="sendPost()" >Ajouter une publication </button>
+        <button class="btn btn-outline-dark text-center mb-5 mt-3"  @click="sendPost" >Ajouter une publication </button>
       </div>
-    </form>
+    </div>
   </div>
 
 
@@ -48,17 +48,15 @@ name: "Createpost",
   },
   methods: {
     sendPost() {
-      const formData = new FormData();
-      formData.append("title", this.title);
-      formData.append("url", this.url);
-      formData.append("user_id", this.$store.state.user.userId);
 
-      axios.post("http://localhost:3000/api/gif/", formData)
-          .then( function (response) {
-            console.log(response);
-            this.$router.push('/');
+      axios.post("http://localhost:3000/api/gif/create", {
+        title: this.title,
+        url: this.url,
+        user_id: this.$store.state.user.userId
+      }).then( () => {
+            this.$router.push('/feed');
           })
-          .catch( function (error) {
+          .catch(function (error) {
             console.error("There was an error!", error);
           });
     },
