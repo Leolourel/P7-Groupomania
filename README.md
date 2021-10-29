@@ -8,16 +8,18 @@ Le projet consiste à construire un réseau social interne pour les employés de
 Pour ce MVP, il a été décidé de partir sur un clone du site 9GAG
 
 - [x] En tant qu'employé je veux créer et me connecter à un compte
+- [x] En tant qu'employé je veux pouvoir acceder à mes informations et supprimer mon compte 
 - [x] En tant qu'employé je veux pouvoir partager des GIFs
 - [x] En tant qu'employé je veux pouvoir voir les GIFs des autres employés
 - [x] En tant qu'employé je veux pouvoir voir et écrire des commentaires sur les publications
+- [x] En tant qu'admin je veux pouvoir moderer les posts et commentaires des utilisateurs 
 
 ## Technologies utilisées
 
 - **Front-end :** Vue Js, Bootstrap 
 - **Back-end :** Node Js, Express & MySQL
 
-## Dans le **frontend**
+## Dans le **frontend dossier groupomania-app**
 
 ### Setup du projet
 ```
