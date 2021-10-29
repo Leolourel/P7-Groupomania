@@ -3,18 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/controllers/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/controllers/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/gif.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/middleware/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/middleware/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/models/connection.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/models/connection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/routes/comment.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/comment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/routes/gif.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/gif.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routes/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/footer.vue" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/navbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Createpost.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Createpost.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Profile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Profile.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +75,7 @@
       <workItem from="1633502670546" duration="23768000" />
       <workItem from="1634201258902" duration="16000" />
       <workItem from="1634201296287" duration="72900000" />
-      <workItem from="1635153032426" duration="67599000" />
+      <workItem from="1635153032426" duration="71401000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -313,7 +308,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635492635750</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Ajout commentaire backend">
+      <created>1635526684796</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1635526684796</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +352,6 @@
       <path value="$PROJECT_DIR$/Frontend/groupomania-app" />
       <path value="$PROJECT_DIR$/groupomania-app" />
     </ignored-roots>
-    <MESSAGE value="First commit front connect, avant création du switch entre login et signup" />
     <MESSAGE value="methode createAccount fonctionnel sur front" />
     <MESSAGE value="Appel api login et signup ok sur le front, commit avant satuts connection" />
     <MESSAGE value="connection renvoi vers page feed" />
@@ -375,6 +376,7 @@
     <MESSAGE value="test push github" />
     <MESSAGE value="Projet OK! manque commentaire code, test complet et ecriture commentaire unique" />
     <MESSAGE value="Modification userId en id coté back login et front pour la redirection &#10;Modif gitignore, début commentaire" />
-    <option name="LAST_COMMIT_MESSAGE" value="Modification userId en id coté back login et front pour la redirection &#10;Modif gitignore, début commentaire" />
+    <MESSAGE value="Ajout commentaire backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout commentaire backend" />
   </component>
 </project>

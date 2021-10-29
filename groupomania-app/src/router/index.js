@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
+//Import des différentes view pour la gestion du router
 import connect from '../views/connect.vue'
 import Feed from '../views/Feed.vue'
 import Profile from '../views/Profile.vue'
 import Createpost from '../views/Createpost.vue'
 
+//redirection vers les différentes url en fonction des vue
 const routes = [
   {
     path: '/',
@@ -25,20 +27,21 @@ const routes = [
     name: 'Feed',
     component: Feed
   },
-    {
-     path: '/Profile',
-     name: 'Profile',
-     component: Profile
-    },
-    {
-        path: '/Createpost',
-        name: 'Createpost',
-        component: Createpost
+  {
+    path: '/Profile',
+    name: 'Profile',
+    component: Profile
+  },
+  {
+    path: '/Createpost',
+    name: 'Createpost',
+    component: Createpost
 
-    }
+  }
 
 ]
 
+//Création du router @todo regarder la doc process.env pour verifier qu'il sagit bien de la constante définie dans le store
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
