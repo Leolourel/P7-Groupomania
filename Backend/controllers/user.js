@@ -13,7 +13,7 @@ exports.getOneUser = (req, res, next) => { //jwt recup id a partir du token, lig
 
     const userToken = req.headers.authorization;
     const userInfo = jwt.verify(userToken, process.env.TOKEN);
-    const userId = userInfo.userId
+    const userId = userInfo.id
 
     console.log(userInfo, userId);
     let sqlGetUser;
@@ -93,11 +93,14 @@ exports.login = (req, res, next) => {
                 }
                 // Si true, on renvoie un statut 200 et un objet JSON avec un userID + un token
                 res.status(200).json({
+                    pseudo: result[0].pseudo,
+                    email: result[0].email,
+                    avatar: result[0].avatar,
                     isAdmin: result[0].isAdmin,
-                    userId: result[0].id,
+                    id: result[0].id,
                     token: jwt.sign(
                         {
-                            userId: result[0].id,
+                            id: result[0].id,
                         },
                                 process.env.TOKEN, //Clé d'encodage du token
                         { expiresIn: '24h' }, //Le token expire au bout de 24h, une nouvelle connexion sera demandée
@@ -132,42 +135,3 @@ exports.deleteAccount = (req, res, next) => {
 
 }
 
-
-    // const password = req.body.password;
-    // const userID = res.locals.userID;
-//     let password = '$2b$10$4xflK767DkztLaQ3bGLb/OTyppSCJJmM/VFcz2/cWoeH0/eJiXaRS';
-//     let id = 18;
-//     let sqlFindUser = "SELECT password FROM User WHERE id = ?"; // ajouter avatar quand les routes seront prétes
-//
-//         // const filename = result[0].avatar.split("../gif")[1];
-//         // if (filename !== "avatarDefault.jpg") {
-//         //     fs.unlink(`images/${filename}`, (e) => { // On supprime le fichier image en amont
-//         //         if (e) {
-//         //             console.log(e);
-//         //         }
-//         //     })
-//         // }
-//
-//         bcrypt.compare(password,result[0].password)
-//             .then(valid => {
-//                 if (!valid) {
-//                     return res.status(401).json({ error: "Mot de passe incorrect !" });
-//                 }
-//                 let sqlDeleteUser = "DELETE FROM User WHERE id = ?";
-//                 connection.query(sqlFindUser, [id], function (err, result) {
-//                     if (err) {
-//                         return res.status(500).json(err.message);
-//                     };
-//                     if (result.affectedRows == 0) {
-//                         return res.status(400).json({ message: "Suppression échouée" });
-//                     }
-//                     res.status(200).json({ message: "Utilisateur supprimé !" });
-//                 });
-//             })
-//             .catch(e => res.status(500).json(e));
-//     });
-// }
-
-// @todo route logout ? on supp le token? voir jsonwebtoken si solution ou supp avec session storage cote front ?
-
-// @todo compte admin ? isAdmin phpmyadmin, supp compte utilisateur a preparer coter back

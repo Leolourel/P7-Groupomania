@@ -11,7 +11,10 @@ if(!user) {
     user = {
         id: -1,
         token: '',
-        isAdmin: 0
+        isAdmin: 0,
+        pseudo: "",
+        email: "",
+        avatar: ""
     };
 }else {
     try{
@@ -19,7 +22,7 @@ if(!user) {
         instance.defaults.headers.common['Authorization'] = user.token;
     } catch (ex) {
         user = {
-            userId: -1,
+            id: -1,
             token:'',
         };
     }
@@ -52,7 +55,7 @@ const store = createStore({
         },
         logout: function (state){
             state.user = {
-                userId: -1,
+                id: -1,
                 token:'',
             }
             localStorage.removeItem('user');

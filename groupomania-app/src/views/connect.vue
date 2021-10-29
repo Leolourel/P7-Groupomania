@@ -41,7 +41,7 @@
       <p>adresse mail et/ou mot de passe invalide</p>
     </div>
     <div v-if="mode == 'create' && status == 'error_create'" class="mt-3">
-      <p>adresse mail déja utilisée</p>
+      <p>adresse mail déjà utilisée</p>
     </div>
     <div>
       <button @click="login()" type="button" class="btn btn-outline-secondary mt-5 mb-5 btn-lg" :class="{'button--disabled' : !validatedFields}" v-if="mode == 'login'">
@@ -56,7 +56,7 @@
 <div>
   <div>
     <p v-if="mode == 'login'">Tu n'as pas encore de compte ? <span @click="switchToCreateAccount" class="hover-overlay">Créer un compte</span></p>
-    <p v-else>Tu as déja un compte ? <span @click="switchToLogin()">Se connecter</span></p>
+    <p v-else>Tu as déjà un compte ? <span @click="switchToLogin()">Se connecter</span></p>
   </div>
 </div>
 
@@ -80,7 +80,7 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.user.userId != -1) {
+    if (this.$store.state.user.id != -1) {
       this.$router.push('/Feed');
       return
     }

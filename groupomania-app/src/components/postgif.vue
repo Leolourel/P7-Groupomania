@@ -10,7 +10,7 @@
             </div>
           </div>
          <div class="dropdown col-3 mt-2">
-           <button id="btnDelete display" class="btn " type="button" v-if="gif.author.id == this.$store.state.user.userId || this.$store.state.user.isAdmin == 1" v-on:click="deleteGif(gif.id)">
+           <button id="btnDelete display" class="btn " type="button" v-if="gif.author.id == this.$store.state.user.id || this.$store.state.user.isAdmin == 1" v-on:click="deleteGif(gif.id)">
              X
            </button>
          </div>
@@ -29,7 +29,7 @@
              <p class="text-start mt-2 ms-2 mb-1 fw-bold">{{ comment.pseudo }}</p>
              <p class="text-start ms-2 mb-1">{{ comment.content }} </p>
            </div>
-           <button class="btn col-1" type="button" v-if="comment.user_id == this.$store.state.user.userId || this.$store.state.user.isAdmin == 1" v-on:click="deleteComment(comment.id)">
+           <button class="btn col-1" type="button" v-if="comment.user_id == this.$store.state.user.id || this.$store.state.user.isAdmin == 1" v-on:click="deleteComment(comment.id)">
              X
            </button>
          </div>
@@ -37,7 +37,7 @@
        <div class="row d-flex flex-row mb-2 justify-content-center" >
 <!--         <img :src="this.$store.state.userInfos.avatar" class="col-2 img-fluid rounded-circle">-->
          <div class="col-8 ">
-           <input  type="text" class="form-control"  v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter.self="sendComment(gif.id)">
+           <input  type="text" class="form-control"  v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter="sendComment(gif.id)" >
            <button type="submit" hidden="true" ></button>
          </div>
        </div>
@@ -50,9 +50,6 @@
 <script>
 import axios from 'axios';
 
-//@todo: recuperer id du gif concerner pour envoyer le commentaire
-//@todo display une boucle pour les commentaires en rapport avec le gif
-
 export default {
   name: "postgif",
   data(){
@@ -61,8 +58,6 @@ export default {
       comments : [],
       content: "",
     }
-  },
-  props: {
   },
   mounted(){
       axios
@@ -80,14 +75,9 @@ export default {
   },
   methods: {
     sendComment(gifId){
-      // const commentData = new FormData();
-      // commentData.append("content", this.content);
-      // commentData.append("user_id", this.$store.state.user.userId);
-      // commentData.append("gif_id", gifId);
-
       axios.post("http://localhost:3000/api/comment/create", {
         content : this.content,
-        user_id : this.$store.state.user.userId,
+        user_id : this.$store.state.user.id,
         gif_id : gifId
       }).then( () => {
             window.location.reload();

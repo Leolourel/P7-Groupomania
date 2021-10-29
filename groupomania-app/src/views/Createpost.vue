@@ -40,7 +40,7 @@ name: "Createpost",
   },
   components: {navbar},
   mounted: function () {
-    console.log(this.$store.state.user.userId);
+    console.log(this.$store.state.user.id);
     if (this.$store.state.user.id == -1) {
       this.$router.push('/');
       return ;
@@ -52,7 +52,7 @@ name: "Createpost",
       axios.post("http://localhost:3000/api/gif/create", {
         title: this.title,
         url: this.url,
-        user_id: this.$store.state.user.userId
+        user_id: this.$store.state.user.id
       }).then( () => {
             this.$router.push('/feed');
           })
