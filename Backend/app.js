@@ -9,7 +9,6 @@ const helmet = require('helmet');
 //Désactive mise en cache du navigateur
 const nocache = require('nocache');
 
-
 //Déclaration des routes
 //Import de la route dédiée aux sauces
 const gifRoutes = require ('./routes/gif');
@@ -18,11 +17,8 @@ const userRoutes = require('./routes/user');
 //Import de la route dédiée au commentaires
 const commentRoutes = require('./routes/comment');
 
+//Création de l'app express
 const app = express();
-
-
-
-
 
 //Middleware debloquant certains système de sécurité CORS, permet à nchaque utilisateur de faire des requetes depuis son navigateurs, permet au front de communiquer avec le back
 app.use((req, res, next) => {
@@ -34,7 +30,6 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
-
 
 //Sécurise les requetes HTTP, les en-tétes, detournement de clics, mise en place du X-XXS-Protection ...
 app.use(helmet());
@@ -51,10 +46,10 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 //Routes gif
 app.use('/api/gif', gifRoutes);
 
-//Routes utilisateurs
+//Routes user
 app.use('/api/auth', userRoutes);
 
-//Routes Commentaires
+//Routes commentaires
 app.use('/api/comment', commentRoutes);
 
 //Export app.js pour server.js

@@ -1,18 +1,14 @@
 const express =     require('express');
 const router =      express.Router();
+//Récupération des controllers gif
 const gifsCtrl =  require('../controllers/gif');
-const auth =        require('../middleware/auth');
-const multer =      require('../middleware/multer-config');
 
-
-// routes: auth pour l'autentification
-// routes: multer pour gérer les fichiers images
-
-//@todo rajouter le middlewar auth au routes une fois les test terminées
-
+//Route get qui permet de récupérer tous les gifs
 router.get('/',  gifsCtrl.getAllGif);
+//Route post qui permet de créer un gif
 router.post('/create',  gifsCtrl.createOneGif);
-// router.get('/:id', gifsCtrl.getOneGif);
+//Route delete qui permet de supprimer un gif
 router.delete('/delete', gifsCtrl.deleteGif);
 
+// On exporte le module
 module.exports = router;

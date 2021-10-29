@@ -12,8 +12,8 @@ module.exports = (req, res, next) => {
         // On vérifie le token décodé avec la clé secrète initiéé avec la création du token encodé initialement (Cf Controller user), les clés doivent correspondre
         const decodedToken = jwt.verify(token, process.env.TOKEN);
         // on vérifie (méthode verify de jsonwebtoken) que le token, correspond au userID
-        const userId = decodedToken.userId;
-        if (req.body.userId && req.body.userId !== userId) {
+        const id = decodedToken.id;
+        if (req.body.id && req.body.id !== id) {
             throw 'Invalid user ID'; // Le token ne correspond pas au userID
         } else {
             next();

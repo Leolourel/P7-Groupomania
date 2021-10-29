@@ -5,6 +5,7 @@ const mysql = require('mysql');
 
 //Route création d'un commentaire
 exports.createComment = (req, res, next) => {
+
     // récupération de l'id du gif dans la requete
     const postID = req.body.gif_id;
     // récupération de l'id du user dans la requete
@@ -33,8 +34,10 @@ exports.createComment = (req, res, next) => {
 
 // route pour récuperer tous les commentaires
 exports.getAllComment = (req, res, next) => {
+
     // jointure sql qui permet de lié la table comment à la table user afin de recuperer les informations du user pour chaques commentaires
     const sqlFeed = "SELECT c.id, c.gif_id, c.content, c.user_id, c.date, u.pseudo, u.avatar FROM comment c LEFT JOIN user u ON c.user_id = u.id";
+
     // méthode .query pour l'envoi des données à la bd
     connection.query(sqlFeed, function (err, result) {
         if (err) {
@@ -42,7 +45,7 @@ exports.getAllComment = (req, res, next) => {
             return res.status(500).json(err.message);
         };
         if (result.length == 0) {
-            // si il y'a aucun commentaire dans la table comment on renvoi un message pour le faire savoir
+            // si il y'a aucun commentaire dans la table comment on renvoi un message
             return res.status(400).json({ message: "Aucun post à afficher !" });
         }
         // sinon on renvoi un tableau de tous les commentaire
@@ -54,13 +57,18 @@ exports.getAllComment = (req, res, next) => {
 
 // route pour supprimer un commentaire
 exports.deleteComment = (req, res, next) => {
+
+    // On récupére l'id dans la requete
     const commentId = req.body.id;
+    // commande sql pour supprimer le commentaire correspondant à l'id
     const sqlDeleteComment = "DELETE FROM comment WHERE id=?";
 
+    // méthode .query pour l'envoi des données à la bd
     connection.query(sqlDeleteComment, [commentId], function (error) {
         if (error) {
+            // si il y'a une erreur on renvoi l'erreur
             res.status(500).json("error");
-            console.log('erreur')
+            console.log('erreur lors de la suppression du commentaire ')
         } else {
             // Commentaire supprimé dans la BDD
             res.status(201).json({ message: 'Commentaire supprimé' });

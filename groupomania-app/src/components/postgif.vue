@@ -37,7 +37,7 @@
        <div class="row d-flex flex-row mb-2 justify-content-center" >
 <!--         <img :src="this.$store.state.userInfos.avatar" class="col-2 img-fluid rounded-circle">-->
          <div class="col-8 ">
-           <input  type="text" class="form-control"  v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter="sendComment(gif.id)" >
+           <input  type="text" class="form-control" v-if="gif.id" v-model="content" name="comment" placeholder="Ecrivez votre commentaire ici ... " @keyup.enter="sendComment(gif.id)" >
            <button type="submit" hidden="true" ></button>
          </div>
        </div>

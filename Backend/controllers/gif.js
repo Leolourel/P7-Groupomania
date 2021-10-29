@@ -1,16 +1,13 @@
-
+// Permet l'envoi des données à la bd sql groupomania
 const connection = require('../models/connection');
+// package sql qui permet la connection à la bd sql groupomania
 const mysql = require('mysql');
-const fs =require('fs');
-const jwt = require('jsonwebtoken');
-
-//@todo getall gif et getOne gif route, type de jointure pour mes select : SELECT *  FROM gif g INNER JOIN user u ON u.id = g.user_id
 
 
-
-// acceder à tous les gifs
+// route pour acceder à tous les gifs
 exports.getAllGif = (req, res, next) => {
-    const userID = res.locals.userID;
+
+    // Jointure SQL entre la table gif user et comment afin que l'objet gif recupere les infos du user (author) et des commentaires associé au gif, les gifs sont renvoyé dans l'ordre decroisant
     const sqlFeed = "SELECT " +
         "g.id gif_id, g.title, g.url, DATE_FORMAT(g.date, \"%d/%m/%Y\") gif_date," +
         "gu.pseudo gif_user_pseudo, gu.avatar gif_user_avatar, gu.id gif_user_id," +
@@ -21,16 +18,22 @@ exports.getAllGif = (req, res, next) => {
         "LEFT JOIN comment c ON g.id = c.gif_id " +
         "LEFT JOIN user cu ON c.user_id = cu.id " +
         "ORDER BY g.date DESC" ;
+
+    // méthode .query pour l'envoi des données à la bd
     connection.query(sqlFeed, function (err, result) {
         if (err) {
+            // si il y'a une erreur on renvoi l'erreur
             return res.status(500).json(err.message);
         };
+        // si il y'a aucun gif dans la table gif on renvoi un message
         if (result.length == 0) {
             return res.status(400).json({ message: "Aucun post à afficher !" });
         }
+        // On renvoi un tableau de tous les gifs
         const gifs = [];
+        // Pour chaque gif
         result.forEach(row =>{
-            // on recupere le commentaire
+            // on recupere le commentaire avec l'user qui la créer
             const comment = {
                 id : row.comment_id,
                 gif_id: row.comment_gif_id,
@@ -44,6 +47,7 @@ exports.getAllGif = (req, res, next) => {
             }
             // on cherche si on a deja le gif
             let gifExist = false;
+            // Pour chaque gif existant on rajoute un commentaire
             for(let i = 0; i < gifs.length; i++){
                 if (gifs[i].id === row.gif_id) {
                     // on ajoute le commentaire
@@ -53,6 +57,7 @@ exports.getAllGif = (req, res, next) => {
                 }
             }
             if(!gifExist) {
+                // On récupere le gif avec l'user qui l'a créer et ses commentaires
                 let gif = {
                     id : row.gif_id,
                     title: row.title,
@@ -65,33 +70,41 @@ exports.getAllGif = (req, res, next) => {
                     },
                     comments : [comment]
                 }
+                //On renvoi le gif dans le tableau
                 gifs.push(gif);
             }
         })
-        // console.log(gifs[11].comments)
+        // Renvoi du tableau de gifs au front
         res.status(200).json(gifs);
     });
 }
 
 
 
-//créer un gif
+// route créer un gif
 exports.createOneGif = (req, res, next) => {
 
+    // On récupére l'user id dans la requete
     const userId = req.body.user_id;
+    // On récupére le titre du gif dans la requete
     const title = req.body.title;
+    // On récupére l'url du gif dans la requete
     const gifUrl = req.body.url;
 
-    console.log(userId,title,gifUrl);
-
+    // envoi des valeurs à inserer dans la table gif pour la création du gif en sql
     let sqlCreateGif = "INSERT INTO gif (id,user_id,title,url,date)" +
         "VALUES (NULL, ?, ?, ?,CURRENT_TIMESTAMP())";
+    //Tableau des valeurs recuperer dans la requete (user id, title, url)
     let values = [userId, title, gifUrl];
+
+    // méthode .query pour l'envoi des données à la bd
     connection.query(sqlCreateGif, values, function (err, result) {
         if (err) {
+            // si il y'a une erreur lors de la création du gif on renvoi l'erreur
             return res.status(500).json(err.message);
-            console.log("erreur gif")
+            console.log("erreur dans la création du gif")
         };
+        // si le gif est bien créer dans la bd on renvoi un message de confirmation
         res.status(201).json({ message: "Gif crée !" });
         console.log("gifcrée");
     });
@@ -102,19 +115,21 @@ exports.createOneGif = (req, res, next) => {
 // supprimer un gif
 exports.deleteGif = (req, res, next) => {
 
+    //On récupére l'id du gif dans la requete
     const gifId = req.body.id;
+    //requete sql pour supprimer le gif correspondant à l'id dans la bd groupomania
     const sqlDeleteGif = "DELETE FROM `gif` WHERE id=?";
 
-    console.log(gifId);
+    // méthode .query pour l'envoi des données à la bd
     connection.query(sqlDeleteGif, [gifId], function (error) {
         if (error) {
+            // si il y'a une erreur lors de la création du commentaire on renvoi l'erreur
             res.status(500).json("error");
             console.log('erreur')
         } else {
-            // Gif supprimé dans la BDD
+            // si le gif est bien supprimer dans la bd on renvoi un message de confirmation
             res.status(201).json({ message: 'Gif supprimé' });
             console.log('gif supprimé')
-
         }
     });
 
