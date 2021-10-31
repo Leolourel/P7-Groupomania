@@ -1,4 +1,5 @@
 <template>
+  <!-- navbar spécial pour la page connect, pas de création de components car utiliser qu'une seule fois  -->
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
   <div class="container-fluid">
     <div class="navbar-brand"><img id="logo" src="../assets/icon-left-font.png">
@@ -9,9 +10,11 @@
     <div class="collapse navbar-collapse" id="navbarConnect">
       <ul class="navbar-nav ms-5 w-100 d-flex justify-content-end gap-3" >
         <li class="nav-item ">
+          <!-- Boutton Se connecter qui permet de passer au mode login -->
           <button type="button" class="btn btn-outline-danger" v-on:click="switchToLogin">Se connecter</button>
         </li>
         <li class="nav-item ms-5 me-5">
+          <!-- Boutton S'inscrire qui permet de passer au mode create -->
           <button type="button" class="btn btn-outline-danger" v-on:click="switchToCreateAccount()">S'inscrire</button>
         </li>
       </ul>
@@ -22,7 +25,7 @@
 
 <div id="container">
   <div class=" container-sm border border-1 rounded mt-5 bg-light ">
- <!-- v-if connection -->
+    <!-- Mode login -->
     <h1 v-if="mode == 'login'" class="mt-5 text-start ms-2 text-danger">Se connecter </h1>
     <h1 v-else class="mt-5 text-start ms-2 text-danger">Inscription</h1>
     <div v-if="mode == 'create'" class="mt-5">
@@ -37,17 +40,21 @@
       <p class="text-start ms-2">Mot de passe</p>
       <input v-model="password" type="password" placeholder="Le Mot de passe doit contenier au minimum 8 caractères une lettre et un chiffre" class="form-control">
     </div>
+    <!-- Mode login message d'erreur si invalide input -->
     <div v-if="mode == 'login' && status == 'error_login'" class="mt-3">
       <p>adresse mail et/ou mot de passe invalide</p>
     </div>
+    <!-- Mode create message d'erreur si adresse email déja utilisé pour la création du compte  -->
     <div v-if="mode == 'create' && status == 'error_create'" class="mt-3">
       <p>adresse mail déjà utilisée</p>
     </div>
     <div>
+      <!-- Boutton login si on est en mode login permet la connexion du user en actionnant la fonction login si les inputs respecte les regex et conditions  -->
       <button @click="login()" type="button" class="btn btn-outline-secondary mt-5 mb-5 btn-lg" :class="{'button--disabled' : !validatedFields}" v-if="mode == 'login'">
         <span v-if="status == 'loading'">Connexion en cours...</span>
         <span v-else>Connexion</span>
       </button>
+      <!-- Boutton Créer un compte qui permet la création du compte au click grace à la fonction createAccount si les inputs respecte les regex et conditions -->
       <button @click="createAccount()" class="btn btn-outline-secondary mt-5 mb-5 btn-lg" :class="{'button--disabled' : !validatedFields}" v-if="mode == 'create'" >
         <span v-if="status == 'loading'">Création en cours...</span>
         <span v-else>Créer un compte</span></button>
@@ -55,7 +62,9 @@
   </div>
 <div>
   <div>
+    <!-- Lien en mode login qui renvoi vers le mode create au click à la fonction switchToCreateAccount -->
     <p v-if="mode == 'login'">Tu n'as pas encore de compte ? <span @click="switchToCreateAccount" class="hover-overlay">Créer un compte</span></p>
+    <!-- Lien en mode Create qui renvoi vers le mode Login au click à la fonction switchToLogin -->
     <p v-else>Tu as déjà un compte ? <span @click="switchToLogin()">Se connecter</span></p>
   </div>
 </div>
@@ -65,12 +74,13 @@
 </template>
 
 <script>
-
+//Permet de retourner plusieurs state défini dans le store
 import { mapState } from 'vuex'
 
 export default {
   name: "login",
   data: function () {
+    //Data recuperer grace au v-model sur les inputs, mode login par défault lors de l'ouverture de la page
     return{
       mode: 'login',
       email: '',
@@ -79,6 +89,7 @@ export default {
 
     }
   },
+  //Si l'user à un id=-1 on le renvoi vers la page feed(qui elle le renverra vers la page connect)
   mounted() {
     if (this.$store.state.user.id != -1) {
       this.$router.push('/Feed');
@@ -86,21 +97,25 @@ export default {
     }
   },
   computed : {
-    validatedFields: function() { /* @todo regex */
+    //Fonction validation des champs pour les inputs du mode create
+    validatedFields: function() {
+      //Regex email
       const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      //Regex password, au moins 8caractéres dont une lettre et un chiffre minimum
       const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
+      //Si on est dans le mode create et que les saisie respecte les regex et que le pseudo n'est pas vide on return true, on peut acceder au boutton créer un compte
       if( this.mode == 'create'){
         if ( emailRegex.test(this.email)  && this.pseudo != "" && passwordRegex.test(this.password) ) {
           return true;
         } else {
+          // sinon on retourne false et le boutton reste disabled
           return false;
-          // document.getElementById('inputMail').classList.add('border-danger');
         }
-      } else {
+      } else { //Si on est dans le mode login, on return true si les champs sont rempli, boutton login possible
         if (this.email != "" && this.password != ""){
           return true;
-        } else {
+        } else { //Sinon on retourne false et boutton login disabled
           return false;
         }
       }
@@ -108,12 +123,15 @@ export default {
     ...mapState(['status'])
   },
   methods: {
+    // Fonction switchToCreateAccount qui actionne le mode create dans le v-if else du html
     switchToCreateAccount: function () {
       this.mode = 'create';
     },
+    // Fonction switchToLogin qui actionne le mode Login dans le v-if else du html
     switchToLogin: function () {
       this.mode = 'login';
     },
+    //Fonction login qui appel l'action login du store avec dispatch en renvoyant les données des inputs, redirige enssuite vers la page d'acceuil
     login: function () {
       const self = this;
       this.$store.dispatch('login', {
@@ -125,6 +143,7 @@ export default {
         console.log(error)
       })
     },
+    //Fonction createAccount qui appel l'action createAccount du store avec dispatch en renvoyant les données des inputs, redirige vers la fonction login pour la connexion
     createAccount: function () {
       const self = this;
       this.$store.dispatch('createAccount', {

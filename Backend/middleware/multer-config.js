@@ -1,6 +1,5 @@
 const multer = require('multer');  // Mutler permet de gérer les fichiers entrants dans les réquetes HTTP
 
-//todo verifier les formatis d'image gif  image/gif ?
 const MIME_TYPES = {    // accepter les differents formats d'images
     'image/jpg': 'jpg',
     'image/jpeg': 'jpeg',

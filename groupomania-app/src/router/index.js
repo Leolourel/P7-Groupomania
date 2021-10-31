@@ -41,7 +41,7 @@ const routes = [
 
 ]
 
-//Création du router @todo regarder la doc process.env pour verifier qu'il sagit bien de la constante définie dans le store
+//Création du router
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes

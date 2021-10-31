@@ -25,7 +25,7 @@
 <script>
 // Le package axios permet d'envoyer les requete HTTP vers le back end
 import axios from 'axios';
-// @todo definir mapstate
+//Permet de retourner plusieurs state défini dans le store
 import { mapState } from 'vuex';
 export default {
   name: "profilecard",

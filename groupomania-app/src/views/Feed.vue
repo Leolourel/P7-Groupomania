@@ -9,7 +9,6 @@
 import postgif from "@/components/postgif";
 import navbar from "@/components/navbar";
 
-
 export default {
   name: "Feed",
   components: {postgif, navbar},
