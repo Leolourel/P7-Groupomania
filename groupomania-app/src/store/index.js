@@ -71,7 +71,6 @@ const store = createStore({
     },
     actions: {
         //Fonction login
-        //@todo regarder la vidéo de wasp pour commenter les actions
         login: ({commit}, userInfos) => {
             commit('setStatus', 'loading');
             return new Promise((resolve, reject) => {

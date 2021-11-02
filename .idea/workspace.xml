@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="37049105-363a-400c-8bd2-39e45f6abc49" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/middleware/multer-config.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/middleware/multer-config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/postgif.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/components/profilecard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/router/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Feed.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/Createpost.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/Createpost.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" beforeDir="false" afterPath="$PROJECT_DIR$/groupomania-app/src/views/connect.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +71,7 @@
       <workItem from="1633502670546" duration="23768000" />
       <workItem from="1634201258902" duration="16000" />
       <workItem from="1634201296287" duration="72900000" />
-      <workItem from="1635153032426" duration="79649000" />
+      <workItem from="1635153032426" duration="88524000" />
     </task>
     <task id="LOCAL-00001" summary="first commmit &#10;Création de la structure node js">
       <created>1628002010970</created>
@@ -323,7 +318,14 @@
       <option name="project" value="LOCAL" />
       <updated>1635531138705</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Manque beautify code avant exam">
+      <created>1635680694738</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1635680694738</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,7 +362,6 @@
       <path value="$PROJECT_DIR$/Frontend/groupomania-app" />
       <path value="$PROJECT_DIR$/groupomania-app" />
     </ignored-roots>
-    <MESSAGE value="Appel api login et signup ok sur le front, commit avant satuts connection" />
     <MESSAGE value="connection renvoi vers page feed" />
     <MESSAGE value="page feed, profil, et create post créer &#10;component navbar créeer" />
     <MESSAGE value="View profile en attente de correction de la route infos, login signup et logout fonctionnel, debut de la fonction getallgif sur le /feed" />
@@ -385,6 +386,7 @@
     <MESSAGE value="Modification userId en id coté back login et front pour la redirection &#10;Modif gitignore, début commentaire" />
     <MESSAGE value="Ajout commentaire backend" />
     <MESSAGE value="Ajout de commentaire coté front, manque le store et 2 components" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de commentaire coté front, manque le store et 2 components" />
+    <MESSAGE value="Manque beautify code avant exam" />
+    <option name="LAST_COMMIT_MESSAGE" value="Manque beautify code avant exam" />
   </component>
 </project>

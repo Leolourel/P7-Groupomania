@@ -7,16 +7,16 @@
       <h2 class="col mt-5  text-danger text-start ms-5 mb-4 fw-bolder">Ajouter une publication</h2>
     </div>
     <div>
-      <div class="row">
-        <label for="title" class="form-label text-start mt-4 mb-2 ms-5 fs-5" id="labelTitle">Titre de la publication</label>
+      <div class="form-floating mt-4">
         <!-- Input title, récupération du contenue avec v-model dans les data pour l'envoi avec la fonction sendPost  -->
-        <input type="text" class="form-control ms-5 " id="title" rows="3" v-model="title">
+        <input type="text" class="form-control ms-5" name="title" id="title" rows="3" v-model="title" placeholder="Titre de la publication">
+        <label for="title" class="ms-5">Titre de la publication</label>
       </div>
       <br>
-      <div class="row d-flex flex-column">
-        <label for="url" class="form-label text-start fs-5 ms-5 col" id="labelUrl">Lien URL de la publication</label>
+      <div class="d-flex flex-column form-floating mt-4">
         <!-- Input url, récupération du contenue avec v-model dans les data pour l'envoi avec la fonction sendPost  -->
-        <input type="text" class="form-control ms-5 col" id="url" rows="3" v-model="url">
+        <input type="url" class="form-control ms-5 col" id="url" rows="3" v-model="url" placeholder="Lien url de la publication">
+        <label for="url" class= "ms-5" >Lien URL de la publication</label>
       </div>
       <br>
       <div>
@@ -79,17 +79,12 @@ name: "Createpost",
 }#url{
   width: 1000px;
 }
-#labelTitle{
-   width: 1000px;
-}
 #labelUrl{
     width: 1000px;
 }
- /* @todo rassembler les style pour eviter les doublons */
+
 @media only screen and (max-width: 1200px){
   #title{
-    width: 80%;
-  }#labelTitle{
     width: 80%;
   }
 }

@@ -29,16 +29,22 @@
     <h1 v-if="mode == 'login'" class="mt-5 text-start ms-2 text-danger">Se connecter </h1>
     <h1 v-else class="mt-5 text-start ms-2 text-danger">Inscription</h1>
     <div v-if="mode == 'create'" class="mt-5">
-      <p class="text-start ms-2">Pseudo</p>
-      <input v-model="pseudo" type="text" placeholder="Pseudo" class="form-control">
+      <div class="form-floating" >
+          <input v-model="pseudo" type="text" placeholder="Pseudo" class="form-control" name="pseudo" id="pseudo">
+          <label for="pseudo">Pseudo</label>
+      </div>
     </div>
     <div class="mt-5">
-      <p class="text-start ms-2">Adresse e-mail</p>
-        <input v-model="email" type="text" placeholder="Adresse-mail" class="form-control" id="inputMail" >
+      <div class="form-floating" >
+        <input v-model="email" type="email" placeholder="Adresse-mail" class="form-control" id="mail" >
+        <label for="mail">Adresse-mail</label>
+      </div>
     </div>
     <div class="mt-5">
-      <p class="text-start ms-2">Mot de passe</p>
-      <input v-model="password" type="password" placeholder="Le Mot de passe doit contenier au minimum 8 caractères une lettre et un chiffre" class="form-control">
+      <div class="form-floating" >
+        <input v-model="password" type="password" placeholder="Le Mot de passe doit contenier au minimum 8 caractères une lettre et un chiffre" class="form-control" id="password">
+        <label for="password">Le Mot de passe doit contenier au minimum 8 caractères une lettre et un chiffre</label>
+      </div>
     </div>
     <!-- Mode login message d'erreur si invalide input -->
     <div v-if="mode == 'login' && status == 'error_login'" class="mt-3">
@@ -61,7 +67,7 @@
     </div>
   </div>
 <div>
-  <div>
+  <div class="mt-3">
     <!-- Lien en mode login qui renvoi vers le mode create au click à la fonction switchToCreateAccount -->
     <p v-if="mode == 'login'">Tu n'as pas encore de compte ? <span @click="switchToCreateAccount" class="hover-overlay">Créer un compte</span></p>
     <!-- Lien en mode Create qui renvoi vers le mode Login au click à la fonction switchToLogin -->
